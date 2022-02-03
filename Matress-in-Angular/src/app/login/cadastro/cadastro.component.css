@@ -1,0 +1,25 @@
+.input-login {
+    margin: 10px 0 5px 0;
+    padding: 4px;
+    border: 1px solid black;
+    border-radius: 5px;
+    outline: 0;
+}
+
+.div-login{
+    margin: 10% 25% 0 25%;
+    border: 1px solid black;
+    text-align: center;
+    padding: 10px 0 10px 0;
+}
+
+.button-login{
+    padding: 5px 20px;
+    margin-top: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.button-login:hover {
+    cursor: pointer;
+}

@@ -9,6 +9,7 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     CommonModule,
     FormsModule
   ],
-  declarations: [LogarComponent, CadastroComponent]
+  declarations: [LogarComponent, CadastroComponent],
+  exports: [ LogarComponent ]
 })
 export class LoginModule { }
