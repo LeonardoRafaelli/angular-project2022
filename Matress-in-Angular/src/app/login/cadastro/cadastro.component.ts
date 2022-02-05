@@ -16,7 +16,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
   }
   
-  voltar(){
+  logar(){
     this.router.navigate(['/'])
   }
 

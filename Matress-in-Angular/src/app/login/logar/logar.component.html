@@ -1,9 +1,22 @@
-<div class="div-login">
-  
-  <input class="input-login" type="text" placeholder="Username" [(ngModel)]='username'>
-  <br />
-  <input class="input-login" type="password" placeholder="Password" [(ngModel)]='password'>
-  <br />
-  <button class="button-login" (click)="logar()">Login</button>
-  <button class="button-login" (click)="cadastrar()">Cadastrar</button>
+<div class="login-container">
+  <div class="div-login">
+    <h1>Login</h1>
+    <div class="input-keys">
+      <p>Username</p>
+    </div>
+    <input class="input-login" type="text" placeholder="Username" [(ngModel)]='username'>
+    <br />
+    <div class="input-keys">
+      <p>Password</p>
+    </div>
+    <input class="input-login" type="password" placeholder="Password" [(ngModel)]='password'>
+    <br />
+    <div class="login-buttons">
+      <button class="button-login" (click)="logar()">Login</button>
+      <button class="button-login" (click)="cadastrar()">Register</button>
+    </div>
+    <div >
+      <button (click)="socialSignIn('google')" class="button-login">Sign in with Google</button>
+    </div>
+  </div>
 </div>

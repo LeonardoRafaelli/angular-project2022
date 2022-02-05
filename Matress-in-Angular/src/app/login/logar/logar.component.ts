@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import {
+    AuthService,
+    FacebookLoginProvider,
+    GoogleLoginProvider,
+} from 'angular-6-social-login-v2';
 
 @Component({
   selector: 'app-logar',
@@ -11,7 +16,8 @@ export class LogarComponent implements OnInit {
 
 
   constructor(
-    private router: Router
+    private router: Router,
+    private socialAuthService: AuthService 
   ) { }
 
   
@@ -45,4 +51,16 @@ export class LogarComponent implements OnInit {
     this.router.navigate(['/cadastro'])
   }
 
+  
+  public socialSignIn(socialPlatform : string) {
+    
+    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
+      (userData) => {
+        console.log(socialPlatform+" sign in data : " , userData);
+        this.router.navigate(['/home'])
+      }
+    );
+  }
+  
 }
+

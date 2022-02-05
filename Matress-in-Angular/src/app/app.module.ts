@@ -10,6 +10,26 @@ import { TelaPrincipalModule } from './tela-principal/tela-principal.module';
 import { CadastroComponent } from './login/cadastro/cadastro.component';
 import { LogarComponent } from './login/logar/logar.component';
 
+import {
+  SocialLoginModule,
+  AuthServiceConfig,
+  GoogleLoginProvider,
+} from "angular-6-social-login-v2";
+
+
+// Configs 
+export function getAuthServiceConfigs() {
+let config = new AuthServiceConfig(
+    [
+      {
+        id: GoogleLoginProvider.PROVIDER_ID,
+        provider: new GoogleLoginProvider("421872872808-83c2pk3n192r5j5riigno0bdf7fgp2dd.apps.googleusercontent.com")
+      },    
+    ]
+);
+return config;
+}
+
 const routes: Routes = [
   {path: '', component: LogarComponent },
   {path: 'home', component: MainPageComponent},
@@ -25,8 +45,17 @@ const routes: Routes = [
     BrowserModule,
     RouterModule.forRoot(routes),
     LoginModule,
-    TelaPrincipalModule
+    TelaPrincipalModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: getAuthServiceConfigs
+    }
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+
