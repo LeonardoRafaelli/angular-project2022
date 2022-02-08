@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from '../../services/usuario.service';
+
+
 import {
     AuthService,
-    FacebookLoginProvider,
     GoogleLoginProvider,
 } from 'angular-6-social-login-v2';
 
@@ -16,6 +18,7 @@ export class LogarComponent implements OnInit {
 
 
   constructor(
+    private usuarioService: UsuarioService,
     private router: Router,
     private socialAuthService: AuthService 
   ) { }
@@ -25,6 +28,13 @@ export class LogarComponent implements OnInit {
   password = '';
 
   ngOnInit() {
+    this.usuarioService.buscarUsuarios()
+    .then(resultado => {
+      console.log('RESULTADO', resultado)
+    })
+    .catch(erro => {
+      console.log('ERRO AO BUSCAR USUÁRIO', erro)
+    })
   }
 
   logar(){

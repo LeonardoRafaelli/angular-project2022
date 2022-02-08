@@ -1,12 +1,13 @@
-const { Database } = require("sqlite3");
 
-inserirRota('/buscar_usuario',(dados, resposta) => {
-
+inserirRota('/buscar_usuario', (dados, resposta) => {
     console.log(dados);
+    database('SELECT * FROM USER').then(result => {
+        resposta({ list: result });
+    }).catch(erro => {
+        resposta({ resposta: erro });
+    });
+});
 
-    resposta({ok: "Requisição efetuada com sucesso!"})
-
-})
 
 inserirRota('/criar_usuario',
 function name(dados, resposta) {
@@ -20,8 +21,11 @@ function name(dados, resposta) {
         return reposta ({erro: 'É necessário preencher o nickname'})
     }
 
-    database(`INSERT INTO USER (nome, nickname)`
-    +` VALUES ("${dados.nome}", "${dados.nickname}")`).
+    database(`INSERT INTO USER
+    (nome, nickname)
+     VALUES ("${dados.nome}", "${dados.nickname}")`).
+
+
     then(result => {
         console.log('Usuário inserido com sucesso!');
         resposta({message: 'Usuário inserido com sucesso!'})
@@ -30,3 +34,53 @@ function name(dados, resposta) {
         resposta({erro: 'Erro ao inserir o usuário!'});
     });
 })
+
+inserirRota('/login',
+    function (dados, resposta) {
+        console.log(dados);
+
+        database(`SELECT * FROM USER WHERE NICKNAME = "${dados, nickname}"`)
+            .then(result => {
+                resposta({ list: result });
+            }).catch(erro => {
+                resposta({ erro: 'Erro ao buscar usuários!' });
+            });
+    });
+
+// fetch('/api/criar_usuario',
+//     {  
+//         method: 'POST',
+//         body: JSON.stringify(
+//             {
+//                 nome: "cole" , nickname: 'henrique', password: '123'
+//             }
+//         ), 
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     }
+// ).then(function (result) {
+//     return result.json();
+// }).then(function (dados){
+//     console.log(dados);
+// }).catch(function(erro) {
+//     console.log(erro);
+// })
+
+
+
+
+// fetch('/api/buscar_usuario',
+//     {  
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }
+//     }
+// ).then(function (result) {
+//     return result.json();
+// }).then(function (dados){
+//     console.log(dados);
+// }).catch(function(erro) {
+//     console.log(erro);
+// })
