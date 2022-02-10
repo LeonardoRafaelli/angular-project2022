@@ -79,7 +79,6 @@ app.use(cors());
 app.use(express.json());
 require('./api/routes');
 app.use(route);
-
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })

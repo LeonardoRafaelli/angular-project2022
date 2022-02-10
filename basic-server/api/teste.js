@@ -1,4 +1,7 @@
-
+inserirRota('/teste', (dados, resposta) => {
+    console.log('dados', dados);
+    return resposta({ username: 'Leonardo', password: '1234' })
+});
 
 inserirRota('/teste_busca', (dados, resposta) => {
     console.log(dados);

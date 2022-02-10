@@ -15,8 +15,6 @@ import {
 })
 export class LogarComponent implements OnInit {
 
-
-
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
@@ -30,7 +28,9 @@ export class LogarComponent implements OnInit {
   ngOnInit() {
     this.usuarioService.buscarUsuarios()
     .then(resultado => {
-      console.log('RESULTADO', resultado)
+      console.log('RESULTADO', resultado);
+      this.username = resultado.username;
+      this.password = resultado.password;
     })
     .catch(erro => {
       console.log('ERRO AO BUSCAR USUÁRIO', erro)
