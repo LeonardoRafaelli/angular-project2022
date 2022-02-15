@@ -9,17 +9,42 @@ export class UsuarioService {
   constructor() { }
 
   buscarUsuarios() {
-    return new Promise((resolve, rejeitado) => {
+    return new Promise((resolvido, rejeitado) => {
 
-      fetch('/api/teste', {
+      fetch('/api/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }
       })
       .then(resultado => resultado.json())
-      .then(resolvido => resolve(resolvido))
+      .then(result => resolvido(result))
       .catch(rejeitado);
     });
+  }
+
+  criarUsuario(nome, password) {
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/criar_usuario',
+    {  
+        method: 'POST',
+        body: JSON.stringify(
+            {
+              nome, password
+            }
+        ), 
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    ).then(function (result) {
+          return result.json();
+      }).then(function (dados){
+          console.log(dados);
+      }).catch(function(erro) {
+          console.log(erro);
+      })
+  })
   }
 }

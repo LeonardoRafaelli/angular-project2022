@@ -13,6 +13,7 @@ import {
   templateUrl: './logar.component.html',
   styleUrls: ['./logar.component.css']
 })
+
 export class LogarComponent implements OnInit {
 
   constructor(
@@ -28,34 +29,43 @@ export class LogarComponent implements OnInit {
   ngOnInit() {
     this.usuarioService.buscarUsuarios()
     .then(resultado => {
-      console.log('RESULTADO', resultado);
-      // this.username = resultado.username;
-      // this.password = resultado.password;
-    })
-    .catch(erro => {
-      console.log('ERRO AO BUSCAR USUÁRIO', erro)
+      console.log('RESULTADO:', resultado);
+    }).catch(erro => {
+      console.log('ERRO AO BUSCAR USUARIOS:', erro);
     })
   }
 
   logar(){
     console.log('Username: ', this.username, '  Password: ', this.password);
-    const users = [
-      {login: 'leonardo', pass: '123'},
-      {login: 'giuseppe', pass: '123'},
-      {login: 'rafaelli', pass: '123'},
-      {login: 'l', pass: 'l'}
-    ]
+    // const users = [
+    //   {login: 'leonardo', pass: '123'},
+    //   {login: 'giuseppe', pass: '123'},
+    //   {login: 'rafaelli', pass: '123'},
+    //   {login: 'l', pass: 'l'}
+    // ]
 
-    const find = users.find(e => e.login == this.username && e.pass == this.password);
+    // const find = users.find(e => e.login == this.username && e.pass == this.password);
+    
 
-    if(find){
-      localStorage.setItem('User', this.username);
-      this.router.navigate(['/home']);
-    } else {
-      alert("Usuário ou senha incorretos.");
+    // if(find){
+    //   localStorage.setItem('User', this.username);
+    //   this.router.navigate(['/home']);
+    // } else {
+    //   alert("Usuário ou senha incorretos.");
+    // }
+
+
+    this.usuarioService.buscarUsuarios()
+    .then((resultado: User[]) =>{
+      console.log(resultado)
+      for(let i=0; i < resultado.length; i++) {
+        if (this.username == resultado[i].NOME && this.password == resultado[i].PASSWORD){
+          this.router.navigate(['/home']);
+        }
+      } 
     }
-
-  }
+    )
+};
 
   cadastrar(){
     this.router.navigate(['/cadastro'])
@@ -63,7 +73,6 @@ export class LogarComponent implements OnInit {
 
   
   public socialSignIn(socialPlatform : string) {
-    
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (userData) => {
         console.log(socialPlatform+" sign in data : " , userData);
@@ -74,3 +83,7 @@ export class LogarComponent implements OnInit {
   
 }
 
+interface User {
+  NOME: string;
+  PASSWORD: string;
+}

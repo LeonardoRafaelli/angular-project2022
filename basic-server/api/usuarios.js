@@ -17,13 +17,13 @@ function name(dados, resposta) {
         return resposta({ erro: 'É necessário preencher o nome'});
     }
 
-    if(!dados.nickname){
-        return reposta ({erro: 'É necessário preencher o nickname'})
+    if(!dados.password){
+        return resposta ({erro: 'É necessário preencher a senha'})
     }
 
     database(`INSERT INTO USER
-    (nome, nickname)
-     VALUES ("${dados.nome}", "${dados.nickname}")`).
+    (nome, password)
+     VALUES ("${dados.nome}", "${dados.password}")`).
 
 
     then(result => {
@@ -34,18 +34,20 @@ function name(dados, resposta) {
         resposta({erro: 'Erro ao inserir o usuário!'});
     });
 })
-
-inserirRota('/login',
-    function (dados, resposta) {
-        console.log(dados);
-
-        database(`SELECT * FROM USER WHERE NICKNAME = "${dados, nickname}"`)
+    
+    inserirRota('/login', function(dados, resposta) {
+        console.log(dados)
+    
+        database(`SELECT * FROM USER`)
             .then(result => {
-                resposta({ list: result });
+    
+                resposta(result)
+    
+    
             }).catch(erro => {
-                resposta({ erro: 'Erro ao buscar usuários!' });
+                resposta({ erro: 'Erro ao inserir o usuario!' });
             });
-    });
+    })
 
 // fetch('/api/criar_usuario',
 //     {  

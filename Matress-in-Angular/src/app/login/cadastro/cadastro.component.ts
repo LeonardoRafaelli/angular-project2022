@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
+
 @Component({
   selector: 'app-cadastro',
   templateUrl: './cadastro.component.html',
@@ -8,10 +10,12 @@ import { Router } from '@angular/router';
 export class CadastroComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private usuarioService: UsuarioService
   ) { }
 
-  
+  username = "";
+  password = "";
   
   ngOnInit() {
   }
@@ -21,7 +25,7 @@ export class CadastroComponent implements OnInit {
   }
 
   registerNow(){
-    
+    this.usuarioService.criarUsuario(this.username,  this.password)
   }
 
 }
