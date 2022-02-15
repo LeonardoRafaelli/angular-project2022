@@ -35,19 +35,19 @@ function name(dados, resposta) {
     });
 })
     
-    inserirRota('/login', function(dados, resposta) {
-        console.log(dados)
-    
-        database(`SELECT * FROM USER`)
-            .then(result => {
-    
-                resposta(result)
-    
-    
-            }).catch(erro => {
-                resposta({ erro: 'Erro ao inserir o usuario!' });
-            });
-    })
+inserirRota('/login', function(dados, resposta) {
+    console.log(dados)
+
+    database(`SELECT * FROM USER`)
+        .then(result => {
+
+            resposta(result)
+
+
+        }).catch(erro => {
+            resposta({ erro: 'Erro ao inserir o usuario!' });
+        });
+})
 
 // fetch('/api/criar_usuario',
 //     {  

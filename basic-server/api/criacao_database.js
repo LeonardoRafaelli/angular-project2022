@@ -3,7 +3,17 @@ database(`CREATE TABLE IF NOT EXISTS USER (
     NOME varchar(45),
     PASSWORD varchar(50)
     );`).then(result => {
-    console.log('Tabela criada!')
+    console.log('Tabela Usuários criada!')
+}).catch(erro => {
+    console.log('Erro!')
+});
+
+database(`CREATE TABLE IF NOT EXISTS PRODUTO (
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    NOME_PRODUTO varchar(100),
+    VALOR_PRODUTO double
+    );`).then(result => {
+    console.log('Tabela Produto criada!')
 }).catch(erro => {
     console.log('Erro!')
 });
