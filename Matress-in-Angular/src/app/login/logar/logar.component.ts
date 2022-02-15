@@ -36,35 +36,21 @@ export class LogarComponent implements OnInit {
   }
 
   logar(){
-    console.log('Username: ', this.username, '  Password: ', this.password);
-    // const users = [
-    //   {login: 'leonardo', pass: '123'},
-    //   {login: 'giuseppe', pass: '123'},
-    //   {login: 'rafaelli', pass: '123'},
-    //   {login: 'l', pass: 'l'}
-    // ]
 
-    // const find = users.find(e => e.login == this.username && e.pass == this.password);
-    
-
-    // if(find){
-    //   localStorage.setItem('User', this.username);
-    //   this.router.navigate(['/home']);
-    // } else {
-    //   alert("Usuário ou senha incorretos.");
-    // }
-
-
-    this.usuarioService.buscarUsuarios()
-    .then((resultado: User[]) =>{
-      console.log(resultado)
-      for(let i=0; i < resultado.length; i++) {
-        if (this.username == resultado[i].NOME && this.password == resultado[i].PASSWORD){
-          this.router.navigate(['/home']);
-        }
-      } 
-    }
-    )
+    if(this.username == "" || this.password == ""){
+      alert("Há campos vazio!")
+    } else {
+      this.usuarioService.buscarUsuarios()
+      .then((resultado: User[]) =>{
+        console.log(resultado)
+        for(let i=0; i < resultado.length; i++) {
+          if (this.username == resultado[i].NOME && this.password == resultado[i].PASSWORD){
+            localStorage.setItem("User", this.username);
+            this.router.navigate(['/home']);
+          }
+        } 
+      });
+    };
 };
 
   cadastrar(){
