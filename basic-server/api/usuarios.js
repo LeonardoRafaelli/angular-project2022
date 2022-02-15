@@ -33,6 +33,7 @@ inserirRota('/criar_usuario', function(dados, resposta) {
     });
 })
 
+
 inserirRota('/login', function(dados, resposta) {
     console.log(dados)
 
@@ -40,8 +41,6 @@ inserirRota('/login', function(dados, resposta) {
         .then(result => {
 
             resposta(result)
-
-
         }).catch(erro => {
             resposta({ erro: 'Erro ao inserir o usuario!' });
         });
@@ -49,9 +48,31 @@ inserirRota('/login', function(dados, resposta) {
 
 
 inserirRota('/criar_produto', (dados, resposta) => {
-    database(`INSERT INTO PRODUTO VALUES
-    ("${dados.nome}"), null`)
-    console.log("Usuário inserido!");
+    // database(`INSERT INTO PRODUTO VALUES
+    // ("${dados.nome}"), null`)
+    // console.log("Usuário inserido!");
+    // console.log(dados.json())
+    console.log(dados);
+
+    if (!dados.nome) {
+        return resposta({ erro: 'É necessário preencher o nome' });
+    }
+
+    if (!dados.valor) {
+        return resposta({ erro: 'É necessário preencher um valor' })
+    }
+
+    database(`INSERT INTO PRODUTO
+    (nome_produto, valor_produto)
+     VALUES ("${dados.nome}", "${dados.password}")`)
+
+    .then(result => {
+        console.log('Produto inserido com sucesso!');
+        resposta({ message: 'Produto inserido com sucesso!' })
+    }).catch(erro => {
+        console.log('Erro ao inserir o produto!')
+        resposta({ erro: 'Erro ao inserir o produto!' });
+    });
 })
 
 // fetch('/api/criar_usuario',

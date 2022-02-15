@@ -67,11 +67,9 @@ export class UsuarioService {
       }
       ).then(function (result) {
       console.log(result.json())
-      // return result.json();
+      return result.json();
   }).then(function (dados){
       console.log(dados);
-  }).catch(function(erro) {
-      console.log(erro);
   })
   })
   }
