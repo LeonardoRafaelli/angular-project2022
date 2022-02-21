@@ -19,4 +19,8 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(["add-product"])
   }
 
+  voltar(){
+    this.router.navigate(["Sair"])
+  }
+
 }

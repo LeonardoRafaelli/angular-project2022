@@ -39,7 +39,7 @@ inserirRota('/login', function(dados, resposta) {
 
     database(`SELECT * FROM USER`)
         .then(result => {
-
+            console.log("bBuscou")
             resposta(result)
         }).catch(erro => {
             resposta({ erro: 'Erro ao inserir o usuario!' });
