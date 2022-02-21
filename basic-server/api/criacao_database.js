@@ -1,7 +1,7 @@
 database(`CREATE TABLE IF NOT EXISTS USER (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    NOME varchar(45),
-    PASSWORD varchar(50)
+    NOME varchar(45) NOT NULL,
+    PASSWORD varchar(50) NOT NULL
     );`).then(result => {
     console.log('Tabela Usuários criada!')
 }).catch(erro => {
@@ -10,8 +10,8 @@ database(`CREATE TABLE IF NOT EXISTS USER (
 
 database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
-    NOME_PRODUTO varchar(100),
-    VALOR_PRODUTO double
+    NOME_PRODUTO varchar(100) NOT NULL,
+    VALOR_PRODUTO double NOT NULL
     );`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {
