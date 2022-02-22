@@ -23,7 +23,17 @@
         <div class="input-keys">
             <p>Password</p>
         </div>
-        <input class="input-login" type="password" placeholder="Password" [(ngModel)]='password'>
+        <input class="input-login" type="password" placeholder="Senha" [(ngModel)]='password'>
+        <br />
+        <div class="input-keys">
+            <p>CEP</p>
+        </div>
+        <input class="input-login" type="text" placeholder="CEP" [(ngModel)]='cep'>
+        <br />
+        <div class="input-keys">
+            <p>Número da Casa</p>
+        </div>
+        <input class="input-login" type="number" placeholder="Número da Casa" [(ngModel)]='houseNumber'>
         <br />
         <div class="login-buttons">
             <button class="button-login" (click)="logar()">Login</button>

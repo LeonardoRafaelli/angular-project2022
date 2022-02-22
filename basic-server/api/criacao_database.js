@@ -1,6 +1,6 @@
 database(`CREATE TABLE IF NOT EXISTS CEP(
-    cep CHAR(11) NOT NULL PRIMARY KEY,
-    numero VARCHAR(7) not null
+    cep CHAR(8) NOT NULL PRIMARY KEY,
+    numero VARCHAR(7)
     );`).then(result => {
         console.log('Tabela CEP criada!')
     }).catch(err => {
@@ -23,7 +23,7 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 database(`CREATE TABLE IF NOT EXISTS FORNECEDOR (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome varchar(45) not null,
-    CEP_cep char(11) not null,
+    CEP_cep char(8) not null,
     FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
 )`).then(result => {
     console.log("Tabela Fornecedor criada!")
@@ -39,7 +39,7 @@ database(`CREATE TABLE IF NOT EXISTS USER (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(45) NOT NULL,
     PASSWORD varchar(50) NOT NULL,
-    CEP_cep char(11) not null,
+    CEP_cep char(8) not null,
     FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
     );`).then(result => {
     console.log('Tabela Usuários criada!')
@@ -65,7 +65,7 @@ database(`CREATE TABLE IF NOT EXISTS ADMINISTRADOR (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome varchar(45) not null,
     password varchar(45) not null,
-    CEP_cep char(11) not null,
+    CEP_cep char(8) not null,
     FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
 )`).then(result => {
     console.log("Tabela Administrador criada!")

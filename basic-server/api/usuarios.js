@@ -20,8 +20,8 @@ inserirRota('/criar_usuario', function(dados, resposta) {
     }
 
     database(`INSERT INTO USER
-    (nome, password)
-     VALUES ("${dados.nome}", "${dados.password}")`).
+    (nome, password, CEP_cep)
+     VALUES ("${dados.nome}", "${dados.password}", "${dados.cep}")`).
 
 
     then(result => {
@@ -52,7 +52,7 @@ inserirRota('/criar_produto', (dados, resposta) => {
     // ("${dados.nome}"), null`)
     // console.log("Usuário inserido!");
     // console.log(dados.json())
-    console.log(dados);
+    // console.log(dados);
 
     if (!dados.nome) {
         return resposta({ erro: 'É necessário preencher o nome' });
@@ -72,6 +72,37 @@ inserirRota('/criar_produto', (dados, resposta) => {
     }).catch(erro => {
         console.log('Erro ao inserir o produto!')
         resposta({ erro: 'Erro ao inserir o produto!' });
+    });
+})
+
+inserirRota('/adicionar_cep', (dados, resposta) => {
+    // database(`INSERT INTO PRODUTO VALUES
+    // ("${dados.nome}"), null`)
+    // console.log("Usuário inserido!");
+    // console.log(dados.json())
+    // console.log(dados);
+
+    // if (!dados.nome) {
+    //     return resposta({ erro: 'É necessário preencher o nome' });
+    // }
+
+    // if (!dados.valor) {
+    //     return resposta({ erro: 'É necessário preencher um valor' })
+    // }
+    console.log(dados.cep, dados.houseNumber)
+    console.log("TESTEEE")
+
+    database(`INSERT INTO CEP
+    (cep, numero)
+     VALUES ("${dados.cep}", "${dados.houseNumber}")`)
+
+    .then(result => {
+        console.log('Cep inserido com sucesso!');
+        resposta({ message: 'Cep inserido com sucesso!' })
+    }).catch(erro => {
+        console.log("Erro adicionar_cep")
+        console.log('Erro ao inserir o Cep!')
+        resposta({ erro: 'Erro ao inserir o Cep!' });
     });
 })
 

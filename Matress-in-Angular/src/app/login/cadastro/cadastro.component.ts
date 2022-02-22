@@ -16,6 +16,8 @@ export class CadastroComponent implements OnInit {
 
   username = "";
   password = "";
+  cep = "";
+  houseNumber = "";
   
   ngOnInit() {
   }
@@ -25,7 +27,9 @@ export class CadastroComponent implements OnInit {
   }
 
   registerNow(){
-    this.usuarioService.criarUsuario(this.username,  this.password)
+    this.usuarioService.adicionarCep(this.cep, this.houseNumber);
+    this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
+
   }
 
 }

@@ -25,7 +25,7 @@ export class UsuarioService {
   }
 
 
-  criarUsuario(nome, password) {
+  criarUsuario(nome, password, cep) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_usuario',
@@ -33,7 +33,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              nome, password
+              nome, password, cep
             }
         ), 
         headers: {
@@ -65,12 +65,42 @@ export class UsuarioService {
             'Content-Type': 'application/json'
         }
       }
+
       ).then(function (result) {
       console.log(result.json())
       return result.json();
   }).then(function (dados){
       console.log(dados);
   })
+  })
+  }
+
+
+  adicionarCep(cep, houseNumber) {
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/adicionar_cep',
+    {  
+        method: 'POST',
+        body: JSON.stringify(
+            {
+              cep, houseNumber
+            }
+        ), 
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      }
+      ).then(function (result) {
+        console.log(result.json())
+        return result;
+
+      }).then(function (dados){
+        console.log(dados);
+
+      }).catch((erro) => {
+        console.log(erro);
+      })
   })
   }
 }
