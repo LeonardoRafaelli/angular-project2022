@@ -56,7 +56,10 @@ export class LogarComponent implements OnInit {
   cadastrar(){
     this.router.navigate(['/cadastro'])
   }
-
+  
+  loginAdm(){
+    this.router.navigate(['/login-admin'])
+  }
   
   public socialSignIn(socialPlatform : string) {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(

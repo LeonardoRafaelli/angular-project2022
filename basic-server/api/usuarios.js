@@ -89,8 +89,6 @@ inserirRota('/adicionar_cep', (dados, resposta) => {
     // if (!dados.valor) {
     //     return resposta({ erro: 'É necessário preencher um valor' })
     // }
-    console.log(dados.cep, dados.houseNumber)
-    console.log("TESTEEE")
 
     database(`INSERT INTO CEP
     (cep, numero)
@@ -100,8 +98,7 @@ inserirRota('/adicionar_cep', (dados, resposta) => {
         console.log('Cep inserido com sucesso!');
         resposta({ message: 'Cep inserido com sucesso!' })
     }).catch(erro => {
-        console.log("Erro adicionar_cep")
-        console.log('Erro ao inserir o Cep!')
+        console.log('Erro ao inserir o Cep!');
         resposta({ erro: 'Erro ao inserir o Cep!' });
     });
 })

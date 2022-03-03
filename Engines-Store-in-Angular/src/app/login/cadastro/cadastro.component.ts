@@ -23,7 +23,7 @@ export class CadastroComponent implements OnInit {
   }
   
   logar(){
-    this.router.navigate(['/'])
+    this.router.navigate(['/login'])
   }
 
   registerNow(){

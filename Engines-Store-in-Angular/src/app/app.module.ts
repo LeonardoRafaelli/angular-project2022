@@ -9,6 +9,7 @@ import { MainPageComponent } from './tela-principal/main-page/main-page.componen
 import { TelaPrincipalModule } from './tela-principal/tela-principal.module';
 import { CadastroComponent } from './login/cadastro/cadastro.component';
 import { LogarComponent } from './login/logar/logar.component';
+import { LogarAdmComponent } from './login/logar-adm/logar-adm.component';
 
 import {
   SocialLoginModule,
@@ -31,9 +32,10 @@ return config;
 }
 
 const routes: Routes = [
-  {path: '', component: LogarComponent },
+  {path: 'login', component: LogarComponent },
   {path: 'home', component: MainPageComponent},
   {path: 'cadastro', component: CadastroComponent},
+  {path: 'login-admin', component: LogarAdmComponent}
   {path: '*', redirectTo: ''}
 ];
 
