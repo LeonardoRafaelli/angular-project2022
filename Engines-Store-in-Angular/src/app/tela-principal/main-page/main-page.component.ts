@@ -20,7 +20,8 @@ export class MainPageComponent implements OnInit {
   }
 
   voltar(){
-    this.router.navigate(["/login"])
+    localStorage.clear();
+    this.router.navigate(["/"])
   }
 
 }

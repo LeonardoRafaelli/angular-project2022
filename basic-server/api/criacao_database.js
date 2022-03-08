@@ -8,10 +8,11 @@ database(`CREATE TABLE IF NOT EXISTS CEP(
     });
 
 database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    quantidade int not null,
     corredor int not null,
     lado int not null,
-    pratileira int not null
+    prateleira int not null
 )`).then(result => {
     console.log("Tabela Estoque criada!")
 }).catch(err => {
@@ -19,20 +20,15 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 });
 
 
-
 database(`CREATE TABLE IF NOT EXISTS FORNECEDOR (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome varchar(45) not null,
-    CEP_cep char(8) not null,
-    FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
 )`).then(result => {
     console.log("Tabela Fornecedor criada!")
 }).catch(err => {
     console.log("Erro!", err);
 });
 
-
-database('')
 
 
 database(`CREATE TABLE IF NOT EXISTS USER (
@@ -51,8 +47,8 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
-    ESTOQUE_id int not null,
-    FORNECEDOR_id int not null,
+    ESTOQUE_id int not null AUTOINCREMENT,
+    FORNECEDOR_id int not null AUTOINCREMENT,
     FOREIGN KEY (ESTOQUE_id) REFERENCES ESTOQUE (id) on update cascade on delete cascade,
     FOREIGN KEY (FORNECEDOR_id) REFERENCES FORNECEDOR (id) on update cascade on delete cascade
     );`).then(result => {
@@ -64,9 +60,7 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
 database(`CREATE TABLE IF NOT EXISTS ADMINISTRADOR (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome varchar(45) not null,
-    password varchar(45) not null,
-    CEP_cep char(8) not null,
-    FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
+    password varchar(45) not null
 )`).then(result => {
     console.log("Tabela Administrador criada!")
 }).catch(err => {
@@ -86,6 +80,7 @@ database(`CREATE TABLE IF NOT EXISTS VENDAS (
 }).catch(err => {
     console.log("Erro!", err);
 });
+
 
 
 // database(`INSERT INTO USER VALUES (

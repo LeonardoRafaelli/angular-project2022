@@ -46,6 +46,7 @@ export class LogarComponent implements OnInit {
         for(let i=0; i < resultado.length; i++) {
           if (this.username == resultado[i].NOME && this.password == resultado[i].PASSWORD){
             localStorage.setItem("User", this.username);
+            localStorage.setItem("admin?", "0");
             this.router.navigate(['/home']);
           }
         } 

@@ -1,8 +1,18 @@
 <div>
     <input type="text" placeholder="Nome" [(ngModel)]="productName">
+    <br>
     <input type="text" placeholder="Valor" [(ngModel)]="productPrice">
-    <p>{{productName}}</p>
-    <p>{{productPrice}}</p>
+    <br>
+    <input type="text" placeholder="Nome do Fornecedor" [(ngModel)]="nomeForn">
+    <br>
+    <input type="number" placeholder="Qntd. Estoque" [(ngModel)]="qntdEstoque">
+    <br>
+    <input type="number" placeholder="Corredor" [(ngModel)]="corredor">
+    <br>
+    <input type="number" placeholder="Lado" [(ngModel)]="lado">
+    <br>
+    <input type="number" placeholder="Pratileira" [(ngModel)]="pratileira">
+    <br>
     <button (click)="voltar()">Voltar</button>
     <button (click)="adicionarProduto()">Adicionar Produto</button>
 </div>

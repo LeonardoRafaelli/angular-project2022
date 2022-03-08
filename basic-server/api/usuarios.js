@@ -39,13 +39,26 @@ inserirRota('/login', function(dados, resposta) {
 
     database(`SELECT * FROM USER`)
         .then(result => {
-            console.log("bBuscou")
+            console.log("Buscou")
             resposta(result)
         }).catch(erro => {
             resposta({ erro: 'Erro ao inserir o usuario!' });
         });
 })
 
+inserirRota('/buscar_dados', function(dados, resposta) {
+    console.log(dados)
+
+    database(`SELECT * FROM ${dados.tabela}`)
+        .then(result => {
+            console.log("Buscou tabela teste")
+            resposta(result)
+        }).catch(erro => {
+            resposta({ erro: 'Erro ao inserir o usuario!' });
+        });
+})
+
+// nome, valor, estoque, corredor, lado, prateleira, fornecedor
 
 inserirRota('/criar_produto', (dados, resposta) => {
     // database(`INSERT INTO PRODUTO VALUES
@@ -62,9 +75,19 @@ inserirRota('/criar_produto', (dados, resposta) => {
         return resposta({ erro: 'É necessário preencher um valor' })
     }
 
+    database(`INSERT INTO FORNECEDOR
+    VALUES ("null", "${dados.fornecedor}")`)
+    .then(result => {
+        resposta({message: 'Fornecedor Registrado!'})
+    }).catch(err => {
+        resposta({'Erro ': err})
+    })
+
+    database(`INSERT INTO ESTOQUE 
+    VALUES ("null", "${dados.estoque}", "${dados.corredor}", "${dados.lado}", "${dados.prateleira}")`)
+
     database(`INSERT INTO PRODUTO
-    (nome_produto, valor_produto)
-     VALUES ("${dados.nome}", "${dados.password}")`)
+     VALUES ("null", "${dados.nome}", "${dados.valor}", "null", "null")`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');
@@ -76,19 +99,6 @@ inserirRota('/criar_produto', (dados, resposta) => {
 })
 
 inserirRota('/adicionar_cep', (dados, resposta) => {
-    // database(`INSERT INTO PRODUTO VALUES
-    // ("${dados.nome}"), null`)
-    // console.log("Usuário inserido!");
-    // console.log(dados.json())
-    // console.log(dados);
-
-    // if (!dados.nome) {
-    //     return resposta({ erro: 'É necessário preencher o nome' });
-    // }
-
-    // if (!dados.valor) {
-    //     return resposta({ erro: 'É necessário preencher um valor' })
-    // }
 
     database(`INSERT INTO CEP
     (cep, numero)
@@ -102,6 +112,14 @@ inserirRota('/adicionar_cep', (dados, resposta) => {
         resposta({ erro: 'Erro ao inserir o Cep!' });
     });
 })
+
+
+
+
+
+
+
+
 
 // fetch('/api/criar_usuario',
 //     {  

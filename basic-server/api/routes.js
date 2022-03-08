@@ -1,3 +1,5 @@
-require('./teste');
-require('./usuarios')
-require('./criacao_database')
+require('./usuarios');
+require('./criacao_database');
+// setTimeout(() => {
+//     require('./admin')
+// }, 100);

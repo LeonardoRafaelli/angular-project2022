@@ -24,6 +24,41 @@ export class UsuarioService {
     });
   }
 
+  buscarDadosTabelas(tabela) {
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/buscar_dados', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            tabela
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
+  criarAdm() {
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/adicionar_adm', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
 
   criarUsuario(nome, password, cep) {
     return new Promise((resolvido, rejeitado) => {
@@ -50,7 +85,14 @@ export class UsuarioService {
   })
   }
 
-  criarProduto(nome, valor) {
+  // productName;
+  // productPrice;
+  // qntdEstoque;
+  // corredor;
+  // lado;
+  // pratileira;
+
+  criarProduto(nome, valor, estoque, corredor, lado, prateleira, fornecedor) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_produto',
@@ -58,7 +100,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              nome, valor
+              nome, valor, estoque, corredor, lado, prateleira, fornecedor
             }
         ), 
         headers: {

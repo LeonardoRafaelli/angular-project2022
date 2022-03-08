@@ -15,43 +15,37 @@ export class LogarAdmComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    // this.usuarioService.buscarUsuarios()
-    // .then(resultado => {
-    //   console.log('RESULTADO:', resultado);
-    // }).catch(erro => {
-    //   console.log('ERRO AO BUSCAR USUARIOS:', erro);
-    // })
   }
-  
+
   username = '';
   password = '';
-
-
-  logar(){
-
-    // if(this.username == "" || this.password == ""){
-    //   alert("Há campos vazio!")
-    // } else {
-    //   this.usuarioService.buscarUsuarios()
-    //   .then((resultado: User[]) =>{
-    //     console.log(resultado)
-    //     for(let i=0; i < resultado.length; i++) {
-    //       if (this.username == resultado[i].NOME && this.password == resultado[i].PASSWORD){
-    //         localStorage.setItem("User", this.username);
-    //         this.router.navigate(['/home']);
-    //       }
-    //     } 
-    //   });
-    // };
-
-};
-
+  
   loginUsuario(){
-    this.router.navigate(['/login'])
+    this.router.navigate(['/'])
   }
   
   loginAdm(){
-    this.router.navigate(['/login-admin'])
+    
+    if(this.username == "" || this.password == ""){
+      alert("Há campos vazio!")
+    } else {
+      this.usuarioService.buscarDadosTabelas("ADMINISTRADOR")
+      .then((resultado: User) =>{
+        console.log(resultado)
+          if (this.username == resultado[0].nome && this.password == resultado[0].password){
+            localStorage.setItem("UserADM", this.username);
+            localStorage.setItem("admin?", "1");
+            this.router.navigate(['/home']);
+        } 
+      });
+    };
+
+  
   }
   
+}
+
+interface User {
+  NOME: string;
+  PASSWORD: string;
 }

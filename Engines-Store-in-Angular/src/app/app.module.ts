@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+
 import { AppComponent } from './app.component';
 
 import { LoginModule } from './login/login.module';
@@ -32,10 +33,10 @@ return config;
 }
 
 const routes: Routes = [
-  {path: 'login', component: LogarComponent },
+  {path: '', component: LogarComponent },
   {path: 'home', component: MainPageComponent},
   {path: 'cadastro', component: CadastroComponent},
-  {path: 'login-admin', component: LogarAdmComponent}
+  {path: 'login-admin', component: LogarAdmComponent},
   {path: '*', redirectTo: ''}
 ];
 

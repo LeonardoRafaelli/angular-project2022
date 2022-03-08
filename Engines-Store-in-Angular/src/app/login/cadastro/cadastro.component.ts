@@ -23,13 +23,13 @@ export class CadastroComponent implements OnInit {
   }
   
   logar(){
-    this.router.navigate(['/login'])
+    this.router.navigate(['/'])
   }
 
   registerNow(){
     this.usuarioService.adicionarCep(this.cep, this.houseNumber);
     this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
-
+    this.router.navigate(['/']);
   }
 
 }

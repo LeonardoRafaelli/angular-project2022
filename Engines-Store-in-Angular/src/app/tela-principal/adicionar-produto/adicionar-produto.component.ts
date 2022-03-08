@@ -19,13 +19,18 @@ export class AdicionarProdutoComponent implements OnInit {
 
   productName;
   productPrice;
+  qntdEstoque;
+  corredor;
+  lado;
+  prateleira;
+  nomeForn;
 
   voltar(){
     this.router.navigate(['/home'])
   }
 
   adicionarProduto(){
-    this.usuarioService.criarProduto(this.productName, this.productPrice)
+    this.usuarioService.criarProduto(this.productName, this.productPrice, this.qntdEstoque, this.corredor, this.lado, this.prateleira, this.nomeForn)
   }
 
 }
