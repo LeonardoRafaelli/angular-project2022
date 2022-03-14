@@ -1,3 +1,50 @@
+
+<div class="header-container">
+    <div class="header-child-1">
+        <img src="https://logospng.org/download/weg/logo-weg-1536.png" alt="">
+    </div>
+    <div class="header-child-2">
+        <p>SOBRE A WEG</p>
+        <hr style="height: 40px;">
+        <p>INVESTIDORES</p>
+        <hr style="height: 40px;">
+        <p>ÉTICA</p>
+        <hr style="height: 40px;">
+        <p>SUPORTE</p>
+        <hr style="height: 40px;">
+        <p>SOLUÇÕES</p>
+        <hr style="height: 40px;">
+        <p>CARRINHO</p>
+    </div>
+</div>
+<div>
+<button (click)="voltar()">Voltar</button>
+</div>
+
+    <div class="login-container">
+      <div class="div-login">
+        <h1>Admin Login</h1>
+        <div class="input-keys">
+          <p>Username</p>
+        </div>
+        <input class="input-login" type="text" placeholder="Username" [(ngModel)]='username'>
+        <br />
+        <div class="input-keys">
+          <p>Password</p>
+        </div>
+        <input class="input-login" type="password" placeholder="Password" [(ngModel)]='password'>
+        <br />
+        <div class="login-buttons">
+          <button class="button-login" (click)="loginAdm()">Login</button>
+        </div>
+        <div>
+          <button class="button-login" (click)="loginUsuario()">Logar como Usuário</button>
+        </div>
+  
+      </div>
+  
+  </div>
+
 <div>
     <input type="text" placeholder="Nome" [(ngModel)]="productName">
     <br>
@@ -13,6 +60,5 @@
     <br>
     <input type="number" placeholder="Pratileira" [(ngModel)]="pratileira">
     <br>
-    <button (click)="voltar()">Voltar</button>
     <button (click)="adicionarProduto()">Adicionar Produto</button>
 </div>

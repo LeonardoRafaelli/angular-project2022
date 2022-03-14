@@ -17,4 +17,5 @@ const routes: Routes = [
   ],
   declarations: [MainPageComponent, AdicionarProdutoComponent]
 })
+
 export class TelaPrincipalModule { }
