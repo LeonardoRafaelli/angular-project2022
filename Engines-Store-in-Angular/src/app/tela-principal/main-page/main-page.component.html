@@ -14,9 +14,12 @@
       <p>SOLUÇÕES</p>
       <hr style="height: 40px;">
       <p>CARRINHO</p>
+      <hr *ngIf="admin == 1" style="height: 40px;">
+      <p *ngIf="admin == 1" (click)="gerenciarProduto()">GERENCIAR PRODUTOS</p>
     </div>
   </div>
 <main>
-<button (click)="voltar()">Voltar</button>
-<button (click)="adicionarProduto()">Gerencia de Produtos</button>
+  <div>
+    <button (click)="voltar()">Voltar</button>
+  </div>
 </main>

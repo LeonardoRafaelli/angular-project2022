@@ -51,10 +51,10 @@ inserirRota('/buscar_dados', function(dados, resposta) {
 
     database(`SELECT * FROM ${dados.tabela}`)
         .then(result => {
-            console.log("Buscou tabela teste")
+            console.log(`Buscou a tabela ${dados.tabela}`)
             resposta(result)
         }).catch(erro => {
-            resposta({ erro: 'Erro ao inserir o usuario!' });
+            resposta({ erro: `Erro ao buscar a tabela ${dados.tabela}!` });
         });
 })
 

@@ -14,8 +14,10 @@ export class MainPageComponent implements OnInit {
 
   ngOnInit() {
   }
-
-  adicionarProduto(){
+  
+  admin = localStorage.getItem("admin?");
+  
+  gerenciarProduto(){
     this.router.navigate(["add-product"])
   }
 

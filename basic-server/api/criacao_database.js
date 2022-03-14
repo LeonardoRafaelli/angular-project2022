@@ -22,7 +22,7 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 
 database(`CREATE TABLE IF NOT EXISTS FORNECEDOR (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    nome varchar(45) not null,
+    nome varchar(45) not null
 )`).then(result => {
     console.log("Tabela Fornecedor criada!")
 }).catch(err => {
@@ -37,7 +37,7 @@ database(`CREATE TABLE IF NOT EXISTS USER (
     PASSWORD varchar(50) NOT NULL,
     CEP_cep char(8) not null,
     FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
-    );`).then(result => {
+    )`).then(result => {
     console.log('Tabela Usuários criada!')
 }).catch(erro => {
     console.log('Erro!', erro)
@@ -47,11 +47,11 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
-    ESTOQUE_id int not null AUTOINCREMENT,
-    FORNECEDOR_id int not null AUTOINCREMENT,
+    ESTOQUE_id int not null,
+    FORNECEDOR_id int not null,
     FOREIGN KEY (ESTOQUE_id) REFERENCES ESTOQUE (id) on update cascade on delete cascade,
     FOREIGN KEY (FORNECEDOR_id) REFERENCES FORNECEDOR (id) on update cascade on delete cascade
-    );`).then(result => {
+)`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {
     console.log('Erro!', erro)
