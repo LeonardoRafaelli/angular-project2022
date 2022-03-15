@@ -61,11 +61,6 @@ inserirRota('/buscar_dados', function(dados, resposta) {
 // nome, valor, estoque, corredor, lado, prateleira, fornecedor
 
 inserirRota('/criar_produto', (dados, resposta) => {
-    // database(`INSERT INTO PRODUTO VALUES
-    // ("${dados.nome}"), null`)
-    // console.log("Usuário inserido!");
-    // console.log(dados.json())
-    // console.log(dados);
 
     if (!dados.nome) {
         return resposta({ erro: 'É necessário preencher o nome' });
@@ -74,20 +69,24 @@ inserirRota('/criar_produto', (dados, resposta) => {
     if (!dados.valor) {
         return resposta({ erro: 'É necessário preencher um valor' })
     }
-
-    database(`INSERT INTO FORNECEDOR
-    VALUES ("null", "${dados.fornecedor}")`)
-    .then(result => {
-        resposta({message: 'Fornecedor Registrado!'})
-    }).catch(err => {
-        resposta({'Erro ': err})
-    })
-
     database(`INSERT INTO ESTOQUE 
-    VALUES ("null", "${dados.estoque}", "${dados.corredor}", "${dados.lado}", "${dados.prateleira}")`)
+    VALUES (${dados.idEsto}, "${dados.estoque}", "${dados.corredor}", "${dados.lado}", "${dados.prateleira}")`)
+    .then(result => {
+        database(`INSERT INTO FORNECEDOR
+        VALUES (${dados.idForn}, "${dados.fornecedor}")`)
+        .then(result => {
+            resposta({message: 'Fornecedor Registrado!'})
+        }).catch(err => {
+            resposta({'Erro ao registrar o fornecedor': err})
+        })
+        resposta({message: 'Estoque do produto registrado!'});
+    }).catch(err => 
+        resposta({erro: 'E'}))
+
+
 
     database(`INSERT INTO PRODUTO
-     VALUES ("null", "${dados.nome}", "${dados.valor}", "null", "null")`)
+     VALUES (${dados.id}, "${dados.nome}", "${dados.valor}", ${dados.idForn}, ${dados.idEsto})`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');
@@ -97,6 +96,8 @@ inserirRota('/criar_produto', (dados, resposta) => {
         resposta({ erro: 'Erro ao inserir o produto!' });
     });
 })
+
+
 
 inserirRota('/adicionar_cep', (dados, resposta) => {
 

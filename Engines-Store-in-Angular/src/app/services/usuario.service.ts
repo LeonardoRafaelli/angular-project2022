@@ -92,7 +92,7 @@ export class UsuarioService {
   // lado;
   // pratileira;
 
-  criarProduto(nome, valor, estoque, corredor, lado, prateleira, fornecedor) {
+  criarProduto(id, idForn, idEsto, nome, valor, estoque, corredor, lado, prateleira, fornecedor) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_produto',
@@ -100,7 +100,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              nome, valor, estoque, corredor, lado, prateleira, fornecedor
+              id, idForn, idEsto, nome, valor, estoque, corredor, lado, prateleira, fornecedor
             }
         ), 
         headers: {

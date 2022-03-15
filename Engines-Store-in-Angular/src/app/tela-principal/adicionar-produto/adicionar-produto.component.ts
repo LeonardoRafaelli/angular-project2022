@@ -17,6 +17,7 @@ export class AdicionarProdutoComponent implements OnInit {
   ngOnInit() {
   }
 
+  productId;
   productName;
   productPrice;
   qntdEstoque;
@@ -24,13 +25,34 @@ export class AdicionarProdutoComponent implements OnInit {
   lado;
   prateleira;
   nomeForn;
+  idForn;
+  idEsto;
+
+  // CREATE TABLE IF NOT EXISTS FORNECEDOR (
+  //   id INTEGER PRIMARY KEY,
+  //   nome varchar(45) not null
+
+
 
   voltar(){
     this.router.navigate(['/home'])
   }
 
   adicionarProduto(){
-    this.usuarioService.criarProduto(this.productName, this.productPrice, this.qntdEstoque, this.corredor, this.lado, this.prateleira, this.nomeForn)
+    this.usuarioService.criarProduto(this.productId, this.idForn, this.idEsto, this.productName, this.productPrice, this.qntdEstoque, this.corredor, this.lado, this.prateleira, this.nomeForn)
+  }
+
+  limparInputs(){
+    this.idForn = '';
+    this.idEsto = '';
+    this.productId = '';
+    this.productName = '';
+    this.productPrice = '';
+    this.qntdEstoque = '';
+    this.corredor = '';
+    this.lado = '';
+    this.prateleira = '';
+    this.nomeForn = '';
   }
 
 }

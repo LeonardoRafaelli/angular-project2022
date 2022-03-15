@@ -8,7 +8,7 @@ database(`CREATE TABLE IF NOT EXISTS CEP(
     });
 
 database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     quantidade int not null,
     corredor int not null,
     lado int not null,
@@ -21,7 +21,7 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 
 
 database(`CREATE TABLE IF NOT EXISTS FORNECEDOR (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY,
     nome varchar(45) not null
 )`).then(result => {
     console.log("Tabela Fornecedor criada!")
@@ -44,7 +44,7 @@ database(`CREATE TABLE IF NOT EXISTS USER (
 });
 
 database(`CREATE TABLE IF NOT EXISTS PRODUTO (
-    ID INTEGER PRIMARY KEY AUTOINCREMENT,
+    ID INTEGER PRIMARY KEY,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
     ESTOQUE_id int not null,

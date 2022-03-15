@@ -1,13 +1,21 @@
 *{
     margin: 0px;
     padding: 0px;
+} 
+
+.modals-container{
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  flex-direction: column;
+
 }
 
 .header-container{
   display: flex;
   justify-content: space-around;
   color: #0091bd;
-  border: solid 1px #000000;
+  border-bottom: solid 1px #000000;
   box-shadow: 0px 2px 4px rgb(18, 41, 44);
 }
 
@@ -132,7 +140,7 @@ h1{
     /* margin-bottom: -3%; */
 }
 
-button {
+#voltar {
     background: none;
     margin: 10px 5px 0 10px;
     height: 30px;
@@ -142,12 +150,14 @@ button {
     border-radius: 6px;
 }
 
-button:hover{
+#voltar:hover{
     background: rgba(128, 128, 128, 0.068);
     text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.699);
     cursor: pointer;
 
 }
 
-
+.div-login h2{
+  margin-bottom: 10px;
+}
 
