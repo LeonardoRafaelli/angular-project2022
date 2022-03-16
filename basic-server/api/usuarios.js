@@ -59,6 +59,8 @@ inserirRota('/buscar_dados', function(dados, resposta) {
 })
 
 // nome, valor, estoque, corredor, lado, prateleira, fornecedor
+// Precisa separar
+
 
 inserirRota('/criar_produto', (dados, resposta) => {
 
@@ -72,17 +74,17 @@ inserirRota('/criar_produto', (dados, resposta) => {
     database(`INSERT INTO ESTOQUE 
     VALUES (${dados.idEsto}, "${dados.estoque}", "${dados.corredor}", "${dados.lado}", "${dados.prateleira}")`)
     .then(result => {
-        database(`INSERT INTO FORNECEDOR
-        VALUES (${dados.idForn}, "${dados.fornecedor}")`)
-        .then(result => {
-            resposta({message: 'Fornecedor Registrado!'})
-        }).catch(err => {
-            resposta({'Erro ao registrar o fornecedor': err})
-        })
         resposta({message: 'Estoque do produto registrado!'});
     }).catch(err => 
         resposta({erro: 'E'}))
 
+    database(`INSERT INTO FORNECEDOR
+    VALUES (${dados.idForn}, "${dados.fornecedor}")`)
+    .then(result => {
+        resposta({message: 'Fornecedor Registrado!'})
+    }).catch(err => {
+        resposta({'Erro ao registrar o fornecedor': err})
+    })
 
 
     database(`INSERT INTO PRODUTO
