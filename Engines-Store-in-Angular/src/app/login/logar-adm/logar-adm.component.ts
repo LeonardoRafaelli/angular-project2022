@@ -36,7 +36,9 @@ export class LogarAdmComponent implements OnInit {
             localStorage.setItem("UserADM", this.username);
             localStorage.setItem("admin?", "1");
             this.router.navigate(['/home']);
-        } 
+        } else {
+          alert("Usuário ou senha incorretos!")
+        }
       });
     };
 

@@ -5,6 +5,7 @@ import { LogarComponent } from './logar/logar.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { LogarAdmComponent } from './logar-adm/logar-adm.component';
 
+
 @NgModule({
   imports: [
     CommonModule,

@@ -11,6 +11,7 @@ import { TelaPrincipalModule } from './tela-principal/tela-principal.module';
 import { CadastroComponent } from './login/cadastro/cadastro.component';
 import { LogarComponent } from './login/logar/logar.component';
 import { LogarAdmComponent } from './login/logar-adm/logar-adm.component';
+import { CheckLogged } from './checkLogged';
 
 import {
   SocialLoginModule,
@@ -34,7 +35,7 @@ return config;
 
 const routes: Routes = [
   {path: '', component: LogarComponent },
-  {path: 'home', component: MainPageComponent},
+  {path: 'home', component: MainPageComponent, canActivate:[CheckLogged]},
   {path: 'cadastro', component: CadastroComponent},
   {path: 'login-admin', component: LogarAdmComponent},
   {path: '*', redirectTo: ''}
@@ -42,7 +43,7 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,8 +55,9 @@ const routes: Routes = [
   providers: [
     {
       provide: AuthServiceConfig,
-      useFactory: getAuthServiceConfigs
-    }
+      useFactory: getAuthServiceConfigs, 
+    },
+    CheckLogged
   ],
   bootstrap: [AppComponent]
 })
