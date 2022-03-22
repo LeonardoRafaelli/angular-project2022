@@ -33,6 +33,15 @@ inserirRota('/criar_usuario', function(dados, resposta) {
     });
 })
 
+inserirRota('/remover_produto', (dados, resposta) => {
+    database(`DELETE FROM PRODUTO WHERE id = ${dados.productId}`)
+    .then(result => {
+        console.log("Produto apagado")
+        resposta(result)
+    }).catch(erro => {
+        resposta({ erro: 'Erro ao apagar produto!' });
+    });
+})
 
 inserirRota('/login', function(dados, resposta) {
     console.log(dados)
@@ -61,23 +70,16 @@ inserirRota('/buscar_dados', function(dados, resposta) {
 // nome, valor, estoque, corredor, lado, prateleira, fornecedor
 // Precisa separar
 
-
-inserirRota('/criar_produto', (dados, resposta) => {
-
-    if (!dados.nome) {
-        return resposta({ erro: 'É necessário preencher o nome' });
-    }
-
-    if (!dados.valor) {
-        return resposta({ erro: 'É necessário preencher um valor' })
-    }
+inserirRota('/adicionar_estoque', (dados, resposta) => {
     database(`INSERT INTO ESTOQUE 
-    VALUES (${dados.idEsto}, "${dados.estoque}", "${dados.corredor}", "${dados.lado}", "${dados.prateleira}")`)
+    VALUES (${dados.id}, ${dados.qntd}, ${dados.corredor}, ${dados.lado}, ${dados.prateleira})`)
     .then(result => {
         resposta({message: 'Estoque do produto registrado!'});
     }).catch(err => 
-        resposta({erro: 'E'}))
+        resposta({erro: 'Erro ao inserir o estoque'}))
+})
 
+inserirRota('/adicionar_fornecedor', (dados, resposta) => {
     database(`INSERT INTO FORNECEDOR
     VALUES (${dados.idForn}, "${dados.fornecedor}")`)
     .then(result => {
@@ -85,10 +87,13 @@ inserirRota('/criar_produto', (dados, resposta) => {
     }).catch(err => {
         resposta({'Erro ao registrar o fornecedor': err})
     })
+})
+
+inserirRota('/criar_produto', (dados, resposta) => {
 
 
     database(`INSERT INTO PRODUTO
-     VALUES (${dados.id}, "${dados.nome}", "${dados.valor}", ${dados.idForn}, ${dados.idEsto})`)
+     VALUES (${dados.id}, "${dados.nome}", ${dados.valor}, ${dados.idEsto}, ${dados.idForn})`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');
@@ -98,6 +103,7 @@ inserirRota('/criar_produto', (dados, resposta) => {
         resposta({ erro: 'Erro ao inserir o produto!' });
     });
 })
+
 
 
 

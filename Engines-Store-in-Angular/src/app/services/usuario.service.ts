@@ -24,6 +24,26 @@ export class UsuarioService {
     });
   }
 
+  removerProduto(productId){
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/remover_produto', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            productId
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
   buscarDadosTabelas(tabela) {
     return new Promise((resolvido, rejeitado) => {
 
@@ -92,7 +112,7 @@ export class UsuarioService {
   // lado;
   // pratileira;
 
-  criarProduto(id, idForn, idEsto, nome, valor, estoque, corredor, lado, prateleira, fornecedor) {
+  criarProduto(id, idForn, idEsto, nome, valor) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_produto',
@@ -100,7 +120,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              id, idForn, idEsto, nome, valor, estoque, corredor, lado, prateleira, fornecedor
+              id, idForn, idEsto, nome, valor
             }
         ), 
         headers: {
@@ -117,6 +137,73 @@ export class UsuarioService {
   })
   }
 
+
+
+
+// database(`CREATE TABLE IF NOT EXISTS FORNECEDOR (
+//     id INTEGER PRIMARY KEY,
+//     nome varchar(45) not null
+// )`).then(result => {
+//     console.log("Tabela Fornecedor criada!")
+// }).catch(err => {
+//     console.log("Erro!", err);
+// });
+
+  criarEstoque(id, qntd, corredor, lado, prateleira) {
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/adicionar_estoque',
+    {  
+        method: 'POST',
+        body: JSON.stringify(
+            {
+              id, qntd, corredor, lado, prateleira
+            }
+        ), 
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      }
+      ).then(function (result) {
+        console.log(result.json())
+        return result;
+
+      }).then(function (dados){
+        console.log(dados);
+
+      }).catch((erro) => {
+        console.log(erro);
+      })
+  })
+  };
+
+  criarFornecedor(idForn, fornecedor) {
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/adicionar_fornecedor',
+    {  
+        method: 'POST',
+        body: JSON.stringify(
+            {
+              idForn, fornecedor
+            }
+        ), 
+        headers: {
+            'Content-Type': 'application/json'
+        }
+      }
+      ).then(function (result) {
+        console.log(result.json())
+        return result;
+
+      }).then(function (dados){
+        console.log(dados);
+
+      }).catch((erro) => {
+        console.log(erro);
+      })
+  })
+  };
 
   adicionarCep(cep, houseNumber) {
     return new Promise((resolvido, rejeitado) => {

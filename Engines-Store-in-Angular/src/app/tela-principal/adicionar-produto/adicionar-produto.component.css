@@ -5,10 +5,8 @@
 
 .modals-container{
   display: flex;
-  justify-content: space-between;
-  text-align: center;
-  flex-direction: column;
-
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .header-container{

@@ -27,6 +27,7 @@ export class LogarComponent implements OnInit {
   password = '';
 
   ngOnInit() {
+    localStorage.clear();
     this.usuarioService.buscarUsuarios()
     .then(resultado => {
       console.log('RESULTADO:', resultado);

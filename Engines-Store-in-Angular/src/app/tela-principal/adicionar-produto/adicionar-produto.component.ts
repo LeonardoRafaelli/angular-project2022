@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -39,7 +40,13 @@ export class AdicionarProdutoComponent implements OnInit {
   }
 
   adicionarProduto(){
+    this.usuarioService.criarEstoque(this.idEsto, this.qntdEstoque, this.corredor, this.lado, this.prateleira);
+    this.usuarioService.criarFornecedor(this.idForn, this.nomeForn);
     this.usuarioService.criarProduto(this.productId, this.idForn, this.idEsto, this.productName, this.productPrice, this.qntdEstoque, this.corredor, this.lado, this.prateleira, this.nomeForn)
+  }
+
+  removerProduto(){
+    this.usuarioService.removerProduto(this.productId);
   }
 
   limparInputs(){

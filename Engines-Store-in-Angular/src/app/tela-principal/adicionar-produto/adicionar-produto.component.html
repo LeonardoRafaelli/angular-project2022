@@ -40,7 +40,7 @@
         <div class="input-keys">
           <p>ID do produto:</p>
         </div>
-        <input class="input-login" type="number" placeholder="Valor" [(ngModel)]="productId">
+        <input class="input-login" type="number" placeholder="ID do produto" [(ngModel)]="productId">
         <br>
         <div class="input-keys">
           <p>Fornecedor:</p>
@@ -84,14 +84,20 @@
           <button class="button-login" (click)="limparInputs()">Limpar dados inseridos</button>
       </div>
     </div>
+  </div>
 
 
-  <div class="div-login">
+  <div class="div-login" style="">
     <h2>Remover um produto</h2>
     <div class="input-keys">
       <p>Nome do produto:</p>
     </div>
     <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="productName">
+    <br>
+    <div class="input-keys">
+      <p>ID do produto:</p>
+    </div>
+    <input class="input-login" type="text" placeholder="ID" [(ngModel)]="productName">
     <br>
     <div class="login-buttons">
       <button class="button-login" (click)="removerProduto()">Remover produto</button>
