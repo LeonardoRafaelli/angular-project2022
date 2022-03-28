@@ -112,7 +112,7 @@ export class UsuarioService {
   // lado;
   // pratileira;
 
-  criarProduto(id, idForn, idEsto, nome, valor) {
+  criarProduto(idEsto, nome, valor) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_produto',
@@ -120,7 +120,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              id, idForn, idEsto, nome, valor
+              idEsto, nome, valor
             }
         ), 
         headers: {
@@ -149,7 +149,7 @@ export class UsuarioService {
 //     console.log("Erro!", err);
 // });
 
-  criarEstoque(id, qntd, corredor, lado, prateleira) {
+  criarEstoque(id, qntd) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/adicionar_estoque',
@@ -157,35 +157,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              id, qntd, corredor, lado, prateleira
-            }
-        ), 
-        headers: {
-            'Content-Type': 'application/json'
-        }
-      }
-      ).then(function (result) {
-        console.log(result.json())
-        return result;
-
-      }).then(function (dados){
-        console.log(dados);
-
-      }).catch((erro) => {
-        console.log(erro);
-      })
-  })
-  };
-
-  criarFornecedor(idForn, fornecedor) {
-    return new Promise((resolvido, rejeitado) => {
-
-      fetch('/api/adicionar_fornecedor',
-    {  
-        method: 'POST',
-        body: JSON.stringify(
-            {
-              idForn, fornecedor
+              id, qntd
             }
         ), 
         headers: {

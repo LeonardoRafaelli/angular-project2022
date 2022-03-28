@@ -9,26 +9,12 @@ database(`CREATE TABLE IF NOT EXISTS CEP(
 
 database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
     id INTEGER PRIMARY KEY,
-    quantidade int not null,
-    corredor int not null,
-    lado int not null,
-    prateleira int not null
+    quantidade int not null
 )`).then(result => {
     console.log("Tabela Estoque criada!")
 }).catch(err => {
     console.log("Erro!", err);
 });
-
-
-database(`CREATE TABLE IF NOT EXISTS FORNECEDOR (
-    id INTEGER PRIMARY KEY,
-    nome varchar(45) not null
-)`).then(result => {
-    console.log("Tabela Fornecedor criada!")
-}).catch(err => {
-    console.log("Erro!", err);
-});
-
 
 
 database(`CREATE TABLE IF NOT EXISTS USER (
@@ -44,13 +30,10 @@ database(`CREATE TABLE IF NOT EXISTS USER (
 });
 
 database(`CREATE TABLE IF NOT EXISTS PRODUTO (
-    ID INTEGER PRIMARY KEY,
+    ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
-    ESTOQUE_id int not null,
-    FORNECEDOR_id int not null,
-    FOREIGN KEY (ESTOQUE_id) REFERENCES ESTOQUE (id) on update cascade on delete cascade,
-    FOREIGN KEY (FORNECEDOR_id) REFERENCES FORNECEDOR (id) on update cascade on delete cascade
+    ESTOQUE_id int not null
 )`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {
@@ -74,7 +57,7 @@ database(`CREATE TABLE IF NOT EXISTS VENDAS (
     USER_id int not null,
     PRODUTO_id int not null,
     FOREIGN KEY(USER_id) REFERENCES USER (id) on update cascade on delete cascade,
-    FOREIGN KEY( PRODUTO_id) REFERENCES PRODUTO (id) on update cascade on delete cascade
+    FOREIGN KEY(PRODUTO_id) REFERENCES PRODUTO (id) on update cascade on delete cascade
 )`).then(result => {
     console.log("Tabela Vendas criada!")
 }).catch(err => {

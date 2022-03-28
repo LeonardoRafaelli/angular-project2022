@@ -72,28 +72,17 @@ inserirRota('/buscar_dados', function(dados, resposta) {
 
 inserirRota('/adicionar_estoque', (dados, resposta) => {
     database(`INSERT INTO ESTOQUE 
-    VALUES (${dados.id}, ${dados.qntd}, ${dados.corredor}, ${dados.lado}, ${dados.prateleira})`)
+    VALUES (${dados.id}, ${dados.qntd})`)
     .then(result => {
         resposta({message: 'Estoque do produto registrado!'});
     }).catch(err => 
         resposta({erro: 'Erro ao inserir o estoque'}))
 })
 
-inserirRota('/adicionar_fornecedor', (dados, resposta) => {
-    database(`INSERT INTO FORNECEDOR
-    VALUES (${dados.idForn}, "${dados.fornecedor}")`)
-    .then(result => {
-        resposta({message: 'Fornecedor Registrado!'})
-    }).catch(err => {
-        resposta({'Erro ao registrar o fornecedor': err})
-    })
-})
 
 inserirRota('/criar_produto', (dados, resposta) => {
-
-
     database(`INSERT INTO PRODUTO
-     VALUES (${dados.id}, "${dados.nome}", ${dados.valor}, ${dados.idEsto}, ${dados.idForn})`)
+     VALUES (NULL, "${dados.nome}", ${dados.valor}, ${dados.idEsto})`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');
@@ -103,8 +92,6 @@ inserirRota('/criar_produto', (dados, resposta) => {
         resposta({ erro: 'Erro ao inserir o produto!' });
     });
 })
-
-
 
 
 inserirRota('/adicionar_cep', (dados, resposta) => {

@@ -1,4 +1,3 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -18,7 +17,6 @@ export class AdicionarProdutoComponent implements OnInit {
   ngOnInit() {
   }
 
-  productId;
   productName;
   productPrice;
   qntdEstoque;
@@ -28,6 +26,8 @@ export class AdicionarProdutoComponent implements OnInit {
   nomeForn;
   idForn;
   idEsto;
+  removerNome;
+  removerId;
 
   // CREATE TABLE IF NOT EXISTS FORNECEDOR (
   //   id INTEGER PRIMARY KEY,
@@ -36,17 +36,41 @@ export class AdicionarProdutoComponent implements OnInit {
 
 
   voltar(){
-    this.router.navigate(['/home'])
+    this.router.navigate(['/home']);
   }
 
   adicionarProduto(){
-    this.usuarioService.criarEstoque(this.idEsto, this.qntdEstoque, this.corredor, this.lado, this.prateleira);
-    this.usuarioService.criarFornecedor(this.idForn, this.nomeForn);
-    this.usuarioService.criarProduto(this.productId, this.idForn, this.idEsto, this.productName, this.productPrice, this.qntdEstoque, this.corredor, this.lado, this.prateleira, this.nomeForn)
+
+    if(this.verificaProduto()){
+      this.usuarioService.criarEstoque(this.idEsto, this.qntdEstoque);
+      this.usuarioService.criarProduto(this.idEsto, this.productName, this.productPrice);
+    } else {
+      alert("O ID cadastrado no produto, ja foi inserido!")
+    }
+
+    setTimeout(() => {
+      this.usuarioService.buscarDadosTabelas("PRODUTO");
+    }, 1000)
+
+  }
+  
+  verificaProduto(){
+    this.usuarioService.buscarDadosTabelas("PRODUTO")
+    .then((resultado: any) => {
+      for(let i = 0; i < resultado[i].lenght; i++){
+        if(this.productName == resultado[i].nome){
+          return false;
+        }
+      }
+    })
+    return true;
   }
 
   removerProduto(){
-    this.usuarioService.removerProduto(this.productId);
+    this.usuarioService.removerProduto(this.removerId);
+    setTimeout(() => {
+    this.usuarioService.buscarDadosTabelas("PRODUTO");
+    }, 1000)
   }
 
   limparInputs(){
@@ -60,6 +84,8 @@ export class AdicionarProdutoComponent implements OnInit {
     this.lado = '';
     this.prateleira = '';
     this.nomeForn = '';
+    this.removerId = '';
+    this.removerNome = '';
   }
 
 }

@@ -19,12 +19,10 @@
 </div>
 <div>
 <button (click)="voltar()" id="voltar">Voltar</button>
-
-
 </div>
 
-<div class="modals-container">
-  <div class="login-container">
+<!-- <div class="total-container">
+  <div class="adiciona-prod-forn">
     <div class="div-login">
       <h2>Adicionar um novo produto</h2>
         <div class="input-keys">
@@ -41,6 +39,36 @@
           <p>ID do produto:</p>
         </div>
         <input class="input-login" type="number" placeholder="ID do produto" [(ngModel)]="productId">
+    </div>
+  </div>
+
+
+  <div class="adiciona-estoque">
+    <h3>teste</h3>
+  </div>
+</div> -->
+
+<!-- <br>
+        <div class="login-buttons">
+          <button class="button-login" (click)="adicionarProduto()">Adicionar produto</button>
+        </div>
+        <div>
+          <button class="button-login" (click)="limparInputs()">Limpar dados inseridos</button>
+      </div> -->
+
+<div class="modals-container">
+  <div class="login-container">
+    <div class="div-login">
+      <h2>Adicionar um novo produto</h2>
+        <div class="input-keys">
+          <p>Nome do produto:</p>
+        </div>
+        <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="productName">
+        <br>
+        <div class="input-keys">
+          <p>Preço do produto:</p>
+        </div>
+        <input class="input-login" type="text" placeholder="Valor" [(ngModel)]="productPrice">
         <br>
         <div class="input-keys">
           <p>Fornecedor:</p>
@@ -92,12 +120,12 @@
     <div class="input-keys">
       <p>Nome do produto:</p>
     </div>
-    <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="productName">
+    <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="removerNome">
     <br>
     <div class="input-keys">
       <p>ID do produto:</p>
     </div>
-    <input class="input-login" type="text" placeholder="ID" [(ngModel)]="productName">
+    <input class="input-login" type="text" placeholder="ID" [(ngModel)]="removerId">
     <br>
     <div class="login-buttons">
       <button class="button-login" (click)="removerProduto()">Remover produto</button>
