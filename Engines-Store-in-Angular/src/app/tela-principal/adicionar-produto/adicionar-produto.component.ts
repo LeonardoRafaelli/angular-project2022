@@ -20,12 +20,6 @@ export class AdicionarProdutoComponent implements OnInit {
   productName;
   productPrice;
   qntdEstoque;
-  corredor;
-  lado;
-  prateleira;
-  nomeForn;
-  idForn;
-  idEsto;
   removerNome;
   removerId;
 
@@ -42,14 +36,15 @@ export class AdicionarProdutoComponent implements OnInit {
   adicionarProduto(){
 
     if(this.verificaProduto()){
-      this.usuarioService.criarEstoque(this.idEsto, this.qntdEstoque);
-      this.usuarioService.criarProduto(this.idEsto, this.productName, this.productPrice);
+      this.usuarioService.criarEstoque(this.qntdEstoque);
+      this.usuarioService.criarProduto(this.productName, this.productPrice);
     } else {
       alert("O ID cadastrado no produto, ja foi inserido!")
     }
 
     setTimeout(() => {
       this.usuarioService.buscarDadosTabelas("PRODUTO");
+      this.usuarioService.buscarDadosTabelas("ESTOQUE");
     }, 1000)
 
   }
@@ -67,23 +62,16 @@ export class AdicionarProdutoComponent implements OnInit {
   }
 
   removerProduto(){
-    this.usuarioService.removerProduto(this.removerId);
+    this.usuarioService.removerProduto(this.removerNome);
     setTimeout(() => {
-    this.usuarioService.buscarDadosTabelas("PRODUTO");
+      this.usuarioService.buscarDadosTabelas("PRODUTO");
+      this.usuarioService.buscarDadosTabelas("ESTOQUE");
     }, 1000)
   }
 
   limparInputs(){
-    this.idForn = '';
-    this.idEsto = '';
-    this.productId = '';
     this.productName = '';
     this.productPrice = '';
-    this.qntdEstoque = '';
-    this.corredor = '';
-    this.lado = '';
-    this.prateleira = '';
-    this.nomeForn = '';
     this.removerId = '';
     this.removerNome = '';
   }

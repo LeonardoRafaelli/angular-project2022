@@ -24,14 +24,14 @@ export class UsuarioService {
     });
   }
 
-  removerProduto(productId){
+  removerProduto(removerNome){
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/remover_produto', {
         method: 'POST',
         body: JSON.stringify(
           {
-            productId
+            removerNome
           }
         ),
         headers: {
@@ -112,7 +112,7 @@ export class UsuarioService {
   // lado;
   // pratileira;
 
-  criarProduto(idEsto, nome, valor) {
+  criarProduto(nome, valor) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_produto',
@@ -120,7 +120,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              idEsto, nome, valor
+             nome, valor
             }
         ), 
         headers: {
@@ -149,7 +149,7 @@ export class UsuarioService {
 //     console.log("Erro!", err);
 // });
 
-  criarEstoque(id, qntd) {
+  criarEstoque(qntd) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/adicionar_estoque',
@@ -157,7 +157,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              id, qntd
+              qntd
             }
         ), 
         headers: {

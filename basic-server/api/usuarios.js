@@ -34,8 +34,13 @@ inserirRota('/criar_usuario', function(dados, resposta) {
 })
 
 inserirRota('/remover_produto', (dados, resposta) => {
-    database(`DELETE FROM PRODUTO WHERE id = ${dados.productId}`)
+    database(`DELETE FROM PRODUTO WHERE nome = ${dados.removerNome}`)
     .then(result => {
+        database(`DELETE FROM ESTOQUE WHERE id = ${dados.id}`)
+        .then(result => {
+            console.log("Estoque Retirado!")
+        })
+        .catch(err => {console.log(err)})
         console.log("Produto apagado")
         resposta(result)
     }).catch(erro => {
@@ -67,12 +72,10 @@ inserirRota('/buscar_dados', function(dados, resposta) {
         });
 })
 
-// nome, valor, estoque, corredor, lado, prateleira, fornecedor
-// Precisa separar
 
 inserirRota('/adicionar_estoque', (dados, resposta) => {
     database(`INSERT INTO ESTOQUE 
-    VALUES (${dados.id}, ${dados.qntd})`)
+    VALUES (NULL, ${dados.qntd})`)
     .then(result => {
         resposta({message: 'Estoque do produto registrado!'});
     }).catch(err => 
@@ -82,7 +85,7 @@ inserirRota('/adicionar_estoque', (dados, resposta) => {
 
 inserirRota('/criar_produto', (dados, resposta) => {
     database(`INSERT INTO PRODUTO
-     VALUES (NULL, "${dados.nome}", ${dados.valor}, ${dados.idEsto})`)
+     VALUES (NULL, "${dados.nome}", ${dados.valor})`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');

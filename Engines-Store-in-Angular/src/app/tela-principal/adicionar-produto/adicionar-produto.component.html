@@ -60,6 +60,8 @@
   <div class="login-container">
     <div class="div-login">
       <h2>Adicionar um novo produto</h2>
+      
+      <input class="input-login" type="file" (change)="base64($event)" placeholder="file" [(ngModel)]="base64">
         <div class="input-keys">
           <p>Nome do produto:</p>
         </div>
@@ -71,40 +73,9 @@
         <input class="input-login" type="text" placeholder="Valor" [(ngModel)]="productPrice">
         <br>
         <div class="input-keys">
-          <p>Fornecedor:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Nome do Fornecedor" [(ngModel)]="nomeForn">
-        <br>
-        <div class="input-keys">
-          <p>ID do fornecedor:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="ID do Fornecedor" [(ngModel)]="idForn">
-        <br>
-        <div class="input-keys">
-          <p>ID do estoque:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="ID do estoque" [(ngModel)]="idEsto">
-        <br>
-        <div class="input-keys">
           <p>Quantidade de estoque disponível:</p>
         </div>
         <input class="input-login" type="text" placeholder="Qtnd Estoque" [(ngModel)]="qntdEstoque">
-        <br>
-        <div class="input-keys">
-          <p>Corredor aonde se encontra o produto:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Corredor" [(ngModel)]="corredor">
-        <br>
-        <div class="input-keys">
-          <p>Lado do corredor(A-B):</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Lado do corredor" [(ngModel)]="lado">
-        <br>
-        <div class="input-keys">
-          <p>Prateleira:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Prateleira" [(ngModel)]="prateleira">
-        <br>
         <div class="login-buttons">
           <button class="button-login" (click)="adicionarProduto()">Adicionar produto</button>
         </div>

@@ -32,8 +32,7 @@ database(`CREATE TABLE IF NOT EXISTS USER (
 database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(100) NOT NULL,
-    VALOR double NOT NULL,
-    ESTOQUE_id int not null
+    VALOR double NOT NULL
 )`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {
