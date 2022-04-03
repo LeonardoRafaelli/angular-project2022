@@ -24,6 +24,26 @@ export class UsuarioService {
     });
   }
 
+  removerEstoque(removerId){
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/remover_estoque', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            removerId
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
   removerProduto(removerNome){
     return new Promise((resolvido, rejeitado) => {
 
@@ -112,7 +132,7 @@ export class UsuarioService {
   // lado;
   // pratileira;
 
-  criarProduto(nome, valor) {
+  criarProduto(nome, valor, imgBase64) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_produto',
@@ -120,7 +140,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-             nome, valor
+             nome, valor, imgBase64
             }
         ), 
         headers: {

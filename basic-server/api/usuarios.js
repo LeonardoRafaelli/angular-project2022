@@ -23,7 +23,6 @@ inserirRota('/criar_usuario', function(dados, resposta) {
     (nome, password, CEP_cep)
      VALUES ("${dados.nome}", "${dados.password}", "${dados.cep}")`).
 
-
     then(result => {
         console.log('Usuário inserido com sucesso!');
         resposta({ message: 'Usuário inserido com sucesso!' })
@@ -34,18 +33,21 @@ inserirRota('/criar_usuario', function(dados, resposta) {
 })
 
 inserirRota('/remover_produto', (dados, resposta) => {
-    database(`DELETE FROM PRODUTO WHERE nome = ${dados.removerNome}`)
+    database(`DELETE FROM PRODUTO WHERE nome = "${dados.removerNome}"`)
     .then(result => {
-        database(`DELETE FROM ESTOQUE WHERE id = ${dados.id}`)
-        .then(result => {
-            console.log("Estoque Retirado!")
-        })
-        .catch(err => {console.log(err)})
-        console.log("Produto apagado")
-        resposta(result)
+       resposta ({message: "Produto removido"})
     }).catch(erro => {
         resposta({ erro: 'Erro ao apagar produto!' });
     });
+})
+
+inserirRota('/remover_estoque', (dados, resposta) => {
+    database(`DELETE FROM ESTOQUE WHERE id = ${dados.removerId}`)
+    .then(result => {
+        resposta ({message: "Estoque removido"})
+     }).catch(erro => {
+         resposta({ erro: 'Erro ao apagar estoque!' });
+     });
 })
 
 inserirRota('/login', function(dados, resposta) {
@@ -84,8 +86,8 @@ inserirRota('/adicionar_estoque', (dados, resposta) => {
 
 
 inserirRota('/criar_produto', (dados, resposta) => {
-    database(`INSERT INTO PRODUTO
-     VALUES (NULL, "${dados.nome}", ${dados.valor})`)
+    database(`INSERT INTO PRODUTO (NOME, VALOR, IMG)
+     VALUES ("${dados.nome}", ${dados.valor}, "${dados.imgBase64}")`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');
@@ -111,49 +113,3 @@ inserirRota('/adicionar_cep', (dados, resposta) => {
         resposta({ erro: 'Erro ao inserir o Cep!' });
     });
 })
-
-
-
-
-
-
-
-
-
-// fetch('/api/criar_usuario',
-//     {  
-//         method: 'POST',
-//         body: JSON.stringify(
-//             {
-//                 nome: "cole" , nickname: 'henrique', password: '123'
-//             }
-//         ), 
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     }
-// ).then(function (result) {
-//     return result.json();
-// }).then(function (dados){
-//     console.log(dados);
-// }).catch(function(erro) {
-//     console.log(erro);
-// })
-
-
-
-
-// fetch('/api/buscar_usuario',
-//     {  
-//         method: 'POST',
-//         headers: {
-//             'Content-Type': 'application/json'
-//         }
-//     }
-// ).then(function (result) {
-//     return result.json();
-// }).then(function (dados){
-//     console.log(dados);
-// }).catch(function(erro) {
-//     console.log(erro);
-// })
