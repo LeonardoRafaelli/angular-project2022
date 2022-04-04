@@ -16,6 +16,7 @@ export class AdicionarProdutoComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
   }
 
   productName;
@@ -24,6 +25,7 @@ export class AdicionarProdutoComponent implements OnInit {
   removerNome;
   removerId;
   imgURL;
+  arrayProdutos = [];
 
   // CREATE TABLE IF NOT EXISTS FORNECEDOR (
   //   id INTEGER PRIMARY KEY,
@@ -47,7 +49,7 @@ export class AdicionarProdutoComponent implements OnInit {
           this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
           this.usuarioService.criarEstoque(this.qntdEstoque);
         } else {  
-          alert("O ID cadastrado no produto, ja foi inserido!")
+          alert("Nome ja inserido!")
         }
         
     setTimeout(() => {
@@ -60,29 +62,20 @@ export class AdicionarProdutoComponent implements OnInit {
   verificaProduto(){
     this.usuarioService.buscarDadosTabelas("PRODUTO")
     .then((resultado: any) => {
-      for(let i = 0; i < resultado[i].lenght; i++){
-        if(this.productName == resultado[i].nome){
+      resultado.find(produto => {
+        if(this.productName == produto.NOME){
           return false;
         }
-      }
+      })
     })
     return true;
   }
 
   removerProduto(){
-    this.usuarioService.buscarDadosTabelas("PRODUTO")
-    .then((resultado: any) => {
-      for(let i = 0; i < resultado[i].lenght; i++){
-        if(this.removerNome == resultado[i].nome){
-          this.removerId = resultado[i].id
-        }
-      }
-    })
+
     this.usuarioService.removerProduto(this.removerNome);
-    setTimeout(() => {
-      this.usuarioService.removerEstoque(this.removerId);
-    }, 500);
-    
+    this.usuarioService.removerEstoque(this.removerId)
+
     setTimeout(() => {
       this.usuarioService.buscarDadosTabelas("PRODUTO");
       this.usuarioService.buscarDadosTabelas("ESTOQUE");
