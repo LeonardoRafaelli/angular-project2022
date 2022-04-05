@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProdutoService } from '../../services/produto.service'
 
 @Component({
   selector: 'app-main-page',
@@ -9,10 +10,28 @@ import { Router } from '@angular/router';
 export class MainPageComponent implements OnInit {
 
   constructor(
-    private router: Router
+    private router: Router,
+    private produtoService: ProdutoService
   ) { }
 
+    newArrayProd = [];
+
   ngOnInit() {
+
+      this.produtoService.buscarProdutos()
+      .then((result: any) => {
+        result.list.find(prod => {
+          let prodTemp = {
+            id: prod.ID,
+            nome: prod.NOME,
+            valor: prod.VALOR,
+            img: prod.IMG
+          }
+  
+          this.newArrayProd.push(prodTemp);
+        })
+
+      });
   }
   
   admin = localStorage.getItem("admin?");

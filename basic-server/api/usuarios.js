@@ -41,14 +41,14 @@ inserirRota('/remover_produto', (dados, resposta) => {
     });
 })
 
-inserirRota('/remover_estoque', (dados, resposta) => {
-    database(`DELETE FROM ESTOQUE WHERE id = ${dados.removerId}`)
-    .then(result => {
-        resposta ({message: "Estoque removido"})
-     }).catch(erro => {
-         resposta({ erro: 'Erro ao apagar estoque!' });
-     });
-})
+// inserirRota('/remover_estoque', (dados, resposta) => {
+//     database(`DELETE FROM ESTOQUE WHERE id = ${dados.removerId}`)
+//     .then(result => {
+//         resposta ({message: "Estoque removido"})
+//      }).catch(erro => {
+//          resposta({ erro: 'Erro ao apagar estoque!' });
+//      });
+// })
 
 inserirRota('/login', function(dados, resposta) {
     console.log(dados)

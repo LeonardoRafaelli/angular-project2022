@@ -76,6 +76,19 @@ h1{
     outline: 0;
 }
 
+.img-input {
+  width: 108px;
+  margin: 5px 0 10px;
+  padding: 8px 12px;
+  border: 1px solid rgb(39, 80, 117);
+  border-radius: 5px;
+  outline: 0;
+}
+
+.imgSelecionada {
+  width: 200px;
+}
+
 .button-login{
     padding: 5px 20px;
     margin: 20px 5px 0 5px;
@@ -176,4 +189,35 @@ h1{
 .adiciona-estoque{
   flex: 1;
   border: 1px solid purple;
+}
+
+.main-container{
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.img-produto{
+  width: 200px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+.add-carrinho {
+  background: none;
+  margin: 0;
+  height: 40px;
+  width: 100px;
+  color: #0091bd;
+  border: 1px solid rgba(9, 59, 133, 0.548);
+  border-radius: 6px;
+}
+
+.add-carrinho:hover{
+  background: rgba(128, 128, 128, 0.068);
+  text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.699);
+  cursor: pointer;
 }

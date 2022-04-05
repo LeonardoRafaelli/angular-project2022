@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { shiftInitState } from '@angular/core/src/view';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { ProdutoService } from 'src/app/services/produto.service';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-adicionar-produto',
@@ -12,11 +13,25 @@ export class AdicionarProdutoComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private produtoService: ProdutoService
   ) { }
 
   ngOnInit() {
+    this.produtoService.buscarProdutos()
+    .then((result: any) => {
+      result.list.find(prod => {
+        let prodTemp = {
+          id: prod.ID,
+          nome: prod.NOME,
+          valor: prod.VALOR,
+          img: prod.IMG
+        }
 
+        this.newArrayProd.push(prodTemp);
+      })
+
+    });
   }
 
   productName;
@@ -31,6 +46,7 @@ export class AdicionarProdutoComponent implements OnInit {
   //   id INTEGER PRIMARY KEY,
   //   nome varchar(45) not null
 
+
   pegarImg(event){
     const file = new FileReader();
     file.onload = (e) => {
@@ -43,12 +59,16 @@ export class AdicionarProdutoComponent implements OnInit {
   voltar(){
     this.router.navigate(['/home']);
   }
+  
+  newArrayProd = [];
+
 
   adicionarProduto(){
         if(this.verificaProduto()){
           this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
           this.usuarioService.criarEstoque(this.qntdEstoque);
-        } else {  
+          window.location.reload();
+        } else { 
           alert("Nome ja inserido!")
         }
         
@@ -71,15 +91,16 @@ export class AdicionarProdutoComponent implements OnInit {
     return true;
   }
 
-  removerProduto(){
-
-    this.usuarioService.removerProduto(this.removerNome);
-    this.usuarioService.removerEstoque(this.removerId)
-
+  removerProduto(id){
+    this.produtoService.removerProduto(id);
+    this.produtoService.removerEstoque(id);
     setTimeout(() => {
       this.usuarioService.buscarDadosTabelas("PRODUTO");
       this.usuarioService.buscarDadosTabelas("ESTOQUE");
-    }, 1000)
+    
+    }, 1000);
+
+    window.location.reload();
   }
 
   limparInputs(){

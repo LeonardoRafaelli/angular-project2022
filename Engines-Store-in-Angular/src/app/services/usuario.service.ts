@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { promise } from 'protractor';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +23,7 @@ export class UsuarioService {
     });
   }
 
+
   removerEstoque(removerId){
     return new Promise((resolvido, rejeitado) => {
 
@@ -44,6 +44,7 @@ export class UsuarioService {
     });
   }
 
+
   removerProduto(removerNome){
     return new Promise((resolvido, rejeitado) => {
 
@@ -63,6 +64,7 @@ export class UsuarioService {
       .catch(rejeitado);
     });
   }
+
 
   buscarDadosTabelas(tabela) {
     return new Promise((resolvido, rejeitado) => {
@@ -149,7 +151,7 @@ export class UsuarioService {
       }
 
       ).then(function (result) {
-      console.log(result.json())
+      resolvido({message: result})
       return result.json();
   }).then(function (dados){
       console.log(dados);
@@ -185,14 +187,9 @@ export class UsuarioService {
         }
       }
       ).then(function (result) {
-        console.log(result.json())
-        return result;
-
-      }).then(function (dados){
-        console.log(dados);
-
+        resolvido({message: result})
       }).catch((erro) => {
-        console.log(erro);
+        rejeitado({erro: erro})
       })
   })
   };

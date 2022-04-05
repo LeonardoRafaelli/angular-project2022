@@ -54,31 +54,19 @@ database(`CREATE TABLE IF NOT EXISTS VENDAS (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     valor_total double not null,
     data_venda date not null,
-    USER_id int not null,
-    PRODUTO_id int not null,
-    FOREIGN KEY(USER_id) REFERENCES USER (id) on update cascade on delete cascade,
-    FOREIGN KEY(PRODUTO_id) REFERENCES PRODUTO (id) on update cascade on delete cascade
 )`).then(result => {
     console.log("Tabela Vendas criada!")
 }).catch(err => {
     console.log("Erro!", err);
 });
 
+database(`CREATE TABLE IF NOT EXISTS CARRINHO (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    produto_id double not null,
+    quantidade int not null
+)`).then(result => {
+    console.log("Tabela Carrinho criada!")
+}).catch(err => {
+    console.log("Erro!", err);
+});
 
-
-// database(`INSERT INTO USER VALUES (
-//     NULL,
-//     "gustavin",
-//     "321")`).then(result => {
-//     console.log('Dados inseridos com sucesso!')
-// }).catch(erro => {
-//     console.log('Erro!')
-// });
-
-// database('SELECT * FROM USER').then(result => {
-//     console.log(result);
-//     resposta({ list: result });
-// }).catch(erro => {
-//     console.log(erro)
-//     resposta({ erro: "Deu ruim papai" });
-// });

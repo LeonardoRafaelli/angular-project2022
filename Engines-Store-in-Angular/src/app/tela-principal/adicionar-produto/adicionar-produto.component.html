@@ -1,71 +1,94 @@
+<header>
+  <div class="header-container">
+      <div class="header-child-1">
+          <img src="../../../../pictures/Leozera-removebg-preview.png" alt="">
+      </div>
+      <div class="header-child-2">
+          <p>SOBRE A LEOZERA ENGINES</p>
+          <hr style="height: 40px;">
+          <p>INVESTIDORES</p>
+          <hr style="height: 40px;">
+          <p>ÉTICA</p>
+          <hr style="height: 40px;">
+          <p>SUPORTE</p>
+          <hr style="height: 40px;">
+          <p>SOLUÇÕES</p>
+          <hr style="height: 40px;">
+          <p>CARRINHO</p>
+      </div>
+  </div>
+</header>
+  
 
-<div class="header-container">
-    <div class="header-child-1">
-        <img src="../../../../pictures/Leozera-removebg-preview.png" alt="">
+
+<main>
+  <div>
+    <button (click)="voltar()" id="voltar">Voltar</button>
     </div>
-    <div class="header-child-2">
-        <p>SOBRE A LEOZERA ENGINES</p>
-        <hr style="height: 40px;">
-        <p>INVESTIDORES</p>
-        <hr style="height: 40px;">
-        <p>ÉTICA</p>
-        <hr style="height: 40px;">
-        <p>SUPORTE</p>
-        <hr style="height: 40px;">
-        <p>SOLUÇÕES</p>
-        <hr style="height: 40px;">
-        <p>CARRINHO</p>
+  <div class="modals-container">
+    <div class="login-container">
+      <div class="div-login">
+        <h2>Adicionar um novo produto</h2>
+          <input class="img-input" type="file" (change)="pegarImg($event)" placeholder="file">
+        <img [src]="imgURL" alt="" class="imgSelecionada">
+          <div class="input-keys">
+            <p>Nome do produto:</p>
+          </div>
+          <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="productName">
+          <br>
+          <div class="input-keys">
+            <p>Preço do produto:</p>
+          </div>
+          <input class="input-login" type="text" placeholder="Valor" [(ngModel)]="productPrice">
+          <br>
+          <div class="input-keys">
+            <p>Quantidade de estoque disponível:</p>
+          </div>
+          <input class="input-login" type="text" placeholder="Qtnd Estoque" [(ngModel)]="qntdEstoque">
+          <div class="login-buttons">
+            <button class="button-login" (click)="adicionarProduto()">Adicionar produto</button>
+          </div>
+          <div>
+            <button class="button-login" (click)="limparInputs()">Limpar dados inseridos</button>
+        </div>
+      </div>
     </div>
-</div>
-<div>
-<button (click)="voltar()" id="voltar">Voltar</button>
-</div>
 
 
-<div class="modals-container">
-  <div class="login-container">
     <div class="div-login">
-      <h2>Adicionar um novo produto</h2>
-        <input class="input-login" type="file" (change)="pegarImg($event)" placeholder="file">
-      <img [src]="imgURL" alt="">
-        <div class="input-keys">
-          <p>Nome do produto:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="productName">
-        <br>
-        <div class="input-keys">
-          <p>Preço do produto:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Valor" [(ngModel)]="productPrice">
-        <br>
-        <div class="input-keys">
-          <p>Quantidade de estoque disponível:</p>
-        </div>
-        <input class="input-login" type="text" placeholder="Qtnd Estoque" [(ngModel)]="qntdEstoque">
-        <div class="login-buttons">
-          <button class="button-login" (click)="adicionarProduto()">Adicionar produto</button>
-        </div>
-        <div>
-          <button class="button-login" (click)="limparInputs()">Limpar dados inseridos</button>
+      <h2>Remover um produto</h2>
+      <div class="input-keys">
+        <p>Nome do produto:</p>
+      </div>
+      <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="removerNome">
+      <br>
+      <div class="input-keys">
+        <p>ID do produto:</p>
+      </div>
+      <input class="input-login" type="text" placeholder="ID" [(ngModel)]="removerId">
+      <br>
+      <div class="login-buttons">
+        <button class="button-login" (click)="removerProduto()">Remover produto</button>
       </div>
     </div>
   </div>
+  <hr style="margin-top: 10px;">
 
-
-  <div class="div-login">
-    <h2>Remover um produto</h2>
-    <div class="input-keys">
-      <p>Nome do produto:</p>
-    </div>
-    <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="removerNome">
-    <br>
-    <div class="input-keys">
-      <p>ID do produto:</p>
-    </div>
-    <input class="input-login" type="text" placeholder="ID" [(ngModel)]="removerId">
-    <br>
-    <div class="login-buttons">
-      <button class="button-login" (click)="removerProduto()">Remover produto</button>
+  <div class="main-container">
+    <div *ngFor="let produto of newArrayProd, let i = index">
+      <div style="margin-bottom: 50px;">
+        <img [src]="produto.img" alt="Imagem do motor" class="img-produto">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+          <div style="text-align: center; margin-bottom: 5px ;">
+            <p class="nome-produto"><b>Nome:</b> {{produto.nome}}</p>
+            <p class="valor-produto"><b>Valor:</b> R$ {{produto.valor}}</p>
+          </div>
+          <div style="text-align: center;">
+            <button class="add-carrinho">Adicionar ao carrinho</button>
+            <button class="add-carrinho" (click)="removerProduto(produto.id)">Remover</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</main>
