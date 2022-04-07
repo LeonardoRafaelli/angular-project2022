@@ -53,7 +53,7 @@ database(`CREATE TABLE IF NOT EXISTS ADMINISTRADOR (
 database(`CREATE TABLE IF NOT EXISTS VENDAS (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     valor_total double not null,
-    data_venda date not null,
+    data_venda date not null
 )`).then(result => {
     console.log("Tabela Vendas criada!")
 }).catch(err => {

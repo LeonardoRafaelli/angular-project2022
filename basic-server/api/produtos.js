@@ -14,8 +14,8 @@ inserirRota('/remover_produtos', (dados, resposta) => {
     });
 });
 
-inserirRota('/remover_produtos', (dados, resposta) => {
-    database(`DELETE FROM PRODUTO WHERE ID = ${dados.id}`).then(result => {
+inserirRota('/remover_estoque', (dados, resposta) => {
+    database(`DELETE FROM ESTOQUE WHERE ID = ${dados.id}`).then(result => {
         resposta({ list: result });
     }).catch(erro => {
         console.log(erro);

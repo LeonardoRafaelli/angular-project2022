@@ -55,25 +55,12 @@
     </div>
 
 
-    <div class="div-login">
-      <h2>Remover um produto</h2>
-      <div class="input-keys">
-        <p>Nome do produto:</p>
-      </div>
-      <input class="input-login" type="text" placeholder="Nome" [(ngModel)]="removerNome">
-      <br>
-      <div class="input-keys">
-        <p>ID do produto:</p>
-      </div>
-      <input class="input-login" type="text" placeholder="ID" [(ngModel)]="removerId">
-      <br>
-      <div class="login-buttons">
-        <button class="button-login" (click)="removerProduto()">Remover produto</button>
-      </div>
-    </div>
+    
   </div>
-  <hr style="margin-top: 10px;">
-
+  <hr style="margin-top: 30px;">
+  <div style="text-align:center;">
+    <h2 class="produto-cadastrado">PRODUTOS CADASTRADOS</h2>
+  </div>
   <div class="main-container">
     <div *ngFor="let produto of newArrayProd, let i = index">
       <div style="margin-bottom: 50px;">
@@ -84,7 +71,6 @@
             <p class="valor-produto"><b>Valor:</b> R$ {{produto.valor}}</p>
           </div>
           <div style="text-align: center;">
-            <button class="add-carrinho">Adicionar ao carrinho</button>
             <button class="add-carrinho" (click)="removerProduto(produto.id)">Remover</button>
           </div>
         </div>

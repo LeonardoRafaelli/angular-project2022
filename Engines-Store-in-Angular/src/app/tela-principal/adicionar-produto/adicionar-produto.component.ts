@@ -42,10 +42,6 @@ export class AdicionarProdutoComponent implements OnInit {
   imgURL;
   arrayProdutos = [];
 
-  // CREATE TABLE IF NOT EXISTS FORNECEDOR (
-  //   id INTEGER PRIMARY KEY,
-  //   nome varchar(45) not null
-
 
   pegarImg(event){
     const file = new FileReader();
@@ -67,7 +63,7 @@ export class AdicionarProdutoComponent implements OnInit {
         if(this.verificaProduto()){
           this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
           this.usuarioService.criarEstoque(this.qntdEstoque);
-          window.location.reload();
+          // window.location.reload();
         } else { 
           alert("Nome ja inserido!")
         }
@@ -97,10 +93,9 @@ export class AdicionarProdutoComponent implements OnInit {
     setTimeout(() => {
       this.usuarioService.buscarDadosTabelas("PRODUTO");
       this.usuarioService.buscarDadosTabelas("ESTOQUE");
-    
     }, 1000);
 
-    window.location.reload();
+    // window.location.reload();
   }
 
   limparInputs(){
@@ -111,9 +106,3 @@ export class AdicionarProdutoComponent implements OnInit {
   }
 
 }
-
-
-// interface Product {
-//   produtctName: string;
-//   productPrice: number;
-// }
