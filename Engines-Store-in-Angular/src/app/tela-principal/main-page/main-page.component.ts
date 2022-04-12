@@ -27,22 +27,22 @@ export class MainPageComponent implements OnInit {
             valor: prod.VALOR,
             img: prod.IMG
           }
-  
+
           this.newArrayProd.push(prodTemp);
         })
 
       });
   }
-  
+
   admin = localStorage.getItem("admin?");
-  
+
   gerenciarProduto(){
     this.router.navigate(["add-product"])
   }
 
-  adicionarAoCarrinho(id){
-    this.produtoService.adicionarAoCarrinho();
-  }
+  // adicionarAoCarrinho(id){
+  //   this.produtoService.adicionarAoCarrinho();
+  // }
 
   voltar(){
     localStorage.clear();

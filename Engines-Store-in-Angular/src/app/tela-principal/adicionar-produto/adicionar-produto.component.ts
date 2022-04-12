@@ -46,10 +46,7 @@ export class AdicionarProdutoComponent implements OnInit {
   qntdEstoque;
   imgURL;
   arrayProdutos = [];
-<<<<<<< HEAD
   idTemporario;
-=======
->>>>>>> b83df8d0750657463dbaf02c5de6c88b066ecd93
 
 
   pegarImg(event){
@@ -70,7 +67,6 @@ export class AdicionarProdutoComponent implements OnInit {
 
   adicionarProduto(){
         if(this.verificaProduto()){
-<<<<<<< HEAD
           if(confirm("Deseja mesmo adicionar este produto? (Ele será visível aos usuários)")){
             this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
             this.usuarioService.criarEstoque(this.qntdEstoque);
@@ -82,13 +78,6 @@ export class AdicionarProdutoComponent implements OnInit {
           }
         } else {
           alert("Há campos não preenchidos!!")
-=======
-          this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
-          this.usuarioService.criarEstoque(this.qntdEstoque);
-          // window.location.reload();
-        } else { 
-          alert("Nome ja inserido!")
->>>>>>> b83df8d0750657463dbaf02c5de6c88b066ecd93
         }
 
         this.infosProdutoEstoque();
@@ -105,17 +94,8 @@ export class AdicionarProdutoComponent implements OnInit {
   removerProduto(id){
     this.produtoService.removerProduto(id);
     this.produtoService.removerEstoque(id);
-<<<<<<< HEAD
     // window.location.reload();
     this.infosProdutoEstoque();
-=======
-    setTimeout(() => {
-      this.usuarioService.buscarDadosTabelas("PRODUTO");
-      this.usuarioService.buscarDadosTabelas("ESTOQUE");
-    }, 1000);
-
-    // window.location.reload();
->>>>>>> b83df8d0750657463dbaf02c5de6c88b066ecd93
   }
 
   limparInputs(){
@@ -125,7 +105,6 @@ export class AdicionarProdutoComponent implements OnInit {
     this.qntdEstoque = '';
   }
 
-<<<<<<< HEAD
   alterProduct(){
     this.produtoService.alterProduct(this.productName, this.productPrice, this.imgURL, this.idTemporario);
     this.produtoService.alterStock(this.qntdEstoque, this.idTemporario);
@@ -171,6 +150,3 @@ export class AdicionarProdutoComponent implements OnInit {
     }, 1000);
   }
 }
-=======
-}
->>>>>>> b83df8d0750657463dbaf02c5de6c88b066ecd93
