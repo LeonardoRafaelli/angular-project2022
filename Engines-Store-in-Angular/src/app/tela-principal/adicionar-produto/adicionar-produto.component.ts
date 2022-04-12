@@ -34,8 +34,10 @@ export class AdicionarProdutoComponent implements OnInit {
     this.produtoService.buscarEstoque()
     .then((result: any) => {
       result.list.find(est => {
-        this.newArrayProd[i]['estoque'] = est.quantidade;
-        i++;
+        if(this.newArrayProd[i].id == est.id){
+          this.newArrayProd[i]['estoque'] = est.quantidade;
+          i++;
+        }
       })
     })
     console.log(this.newArrayProd);
