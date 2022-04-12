@@ -11,7 +11,7 @@ export class MainPageComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
   ) { }
 
     newArrayProd = [];
@@ -38,6 +38,10 @@ export class MainPageComponent implements OnInit {
   
   gerenciarProduto(){
     this.router.navigate(["add-product"])
+  }
+
+  adicionarAoCarrinho(id){
+    this.produtoService.adicionarAoCarrinho();
   }
 
   voltar(){

@@ -22,7 +22,47 @@ export class ProdutoService {
       .catch(rejeitado);
     });
   };
-  
+
+  alterProduct(nome, valor, img, id){
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/alterar_produto', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            nome, valor, img, id
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
+  alterStock(qntdEstoque, id){
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/alterar_estoque', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            qntdEstoque, id
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
 
   removerProduto(id){
     return new Promise((resolvido, rejeitado) => {
@@ -34,6 +74,22 @@ export class ProdutoService {
             id
           }
         ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  };
+
+
+  buscarEstoque(){
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/buscar_estoque', {
+        method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         }

@@ -86,8 +86,8 @@ inserirRota('/adicionar_estoque', (dados, resposta) => {
 
 
 inserirRota('/criar_produto', (dados, resposta) => {
-    database(`INSERT INTO PRODUTO (NOME, VALOR, IMG)
-     VALUES ("${dados.nome}", ${dados.valor}, "${dados.imgBase64}")`)
+    database(`INSERT INTO PRODUTO (NOME, VALOR, IMG, CARRINHO)
+     VALUES ("${dados.nome}", ${dados.valor}, "${dados.imgBase64}", "0")`)
 
     .then(result => {
         console.log('Produto inserido com sucesso!');

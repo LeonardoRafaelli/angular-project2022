@@ -33,7 +33,8 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
-    IMG varchar(99999)
+    IMG varchar(99999),
+    CARRINHO enum(1,0)
 )`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {
@@ -53,7 +54,7 @@ database(`CREATE TABLE IF NOT EXISTS ADMINISTRADOR (
 database(`CREATE TABLE IF NOT EXISTS VENDAS (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     valor_total double not null,
-    data_venda date not null,
+    data_venda date not null
 )`).then(result => {
     console.log("Tabela Vendas criada!")
 }).catch(err => {

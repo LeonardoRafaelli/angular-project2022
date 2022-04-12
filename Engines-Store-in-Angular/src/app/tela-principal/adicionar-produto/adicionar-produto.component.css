@@ -1,7 +1,7 @@
 *{
     margin: 0px;
     padding: 0px;
-} 
+}
 
 .modals-container{
   display: flex;
@@ -220,4 +220,18 @@ h1{
   background: rgba(128, 128, 128, 0.068);
   text-shadow: 0px 0px 1px rgba(0, 0, 0, 0.699);
   cursor: pointer;
+}
+
+.produto-cadastrado{
+  color: #0091bd;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-shadow: 1px 1px #00000091;
+}
+
+.add-carrinho{
+  margin: 3px;
+}
+
+.att-produto{
+  margin: 5px;
 }
