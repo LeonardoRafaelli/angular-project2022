@@ -34,7 +34,11 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
     IMG varchar(99999),
+<<<<<<< Updated upstream
     CARRINHO enum(1,0)
+=======
+    CARRINHO enum(0, 1) default 0
+>>>>>>> Stashed changes
 )`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {
