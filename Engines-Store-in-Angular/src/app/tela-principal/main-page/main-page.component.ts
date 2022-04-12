@@ -40,9 +40,9 @@ export class MainPageComponent implements OnInit {
     this.router.navigate(["add-product"])
   }
 
-  // adicionarAoCarrinho(id){
-  //   this.produtoService.adicionarAoCarrinho();
-  // }
+  adicionarAoCarrinho(id){
+    this.produtoService.adicionarAoCarrinho(id);
+  }
 
   voltar(){
     localStorage.clear();

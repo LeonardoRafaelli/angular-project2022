@@ -18,18 +18,23 @@ export class CadastroComponent implements OnInit {
   password = "";
   cep = "";
   houseNumber = "";
-  
+
   ngOnInit() {
   }
-  
+
   logar(){
     this.router.navigate(['/'])
   }
 
   registerNow(){
-    this.usuarioService.adicionarCep(this.cep, this.houseNumber);
-    this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
-    this.router.navigate(['/']);
+    if(this.cep, this.houseNumber, this.username,  this.password){
+      this.usuarioService.adicionarCep(this.cep, this.houseNumber);
+      this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
+      alert("Usuário cadastrado com sucesso!")
+      this.router.navigate(['/']);
+    } else {
+      alert("Há campos não preenchidos!")
+    }
   }
 
 }

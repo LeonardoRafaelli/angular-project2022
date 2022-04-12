@@ -40,7 +40,6 @@ export class AdicionarProdutoComponent implements OnInit {
         }
       })
     })
-    console.log(this.newArrayProd);
   }
 
   productName;

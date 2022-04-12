@@ -19,25 +19,18 @@ export class LogarComponent implements OnInit {
   constructor(
     private usuarioService: UsuarioService,
     private router: Router,
-    private socialAuthService: AuthService 
+    private socialAuthService: AuthService
   ) { }
 
-  
+
   username = '';
   password = '';
 
   ngOnInit() {
     localStorage.clear();
-    this.usuarioService.buscarUsuarios()
-    .then(resultado => {
-      console.log('RESULTADO:', resultado);
-    }).catch(erro => {
-      console.log('ERRO AO BUSCAR USUARIOS:', erro);
-    })
   }
 
   logar(){
-
     if(this.username == "" || this.password == ""){
       alert("Há campos vazio!")
     } else {
@@ -46,11 +39,11 @@ export class LogarComponent implements OnInit {
         console.log(resultado)
         for(let i=0; i < resultado.length; i++) {
           if (this.username == resultado[i].NOME && this.password == resultado[i].PASSWORD){
-            localStorage.setItem("User", this.username);
+            localStorage.setItem("User", resultado[i].ID);
             localStorage.setItem("admin?", "0");
             this.router.navigate(['/home']);
           }
-        } 
+        }
       });
     };
 };
@@ -58,11 +51,11 @@ export class LogarComponent implements OnInit {
   cadastrar(){
     this.router.navigate(['/cadastro'])
   }
-  
+
   loginAdm(){
     this.router.navigate(['/login-admin'])
   }
-  
+
   public socialSignIn(socialPlatform : string) {
     this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (userData) => {
@@ -71,10 +64,11 @@ export class LogarComponent implements OnInit {
       }
     );
   }
-  
+
 }
 
 interface User {
+  ID: string;
   NOME: string;
   PASSWORD: string;
 }
