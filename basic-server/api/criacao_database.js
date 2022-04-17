@@ -33,7 +33,7 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
-    IMG varchar(99999),
+    IMG varchar(999999),
     CARRINHO enum(1,0)
 )`).then(result => {
     console.log('Tabela Produto criada!')
@@ -63,7 +63,7 @@ database(`CREATE TABLE IF NOT EXISTS VENDAS (
 
 database(`CREATE TABLE IF NOT EXISTS CARRINHO (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    produto_id double not null,
+    produto_id int not null,
     quantidade int not null
 )`).then(result => {
     console.log("Tabela Carrinho criada!")

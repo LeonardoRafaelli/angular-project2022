@@ -63,10 +63,6 @@ export class ProdutoService {
     });
   }
 
-  adicionarAoCarrinho(id){
-
-  };
-
   removerProduto(id){
     return new Promise((resolvido, rejeitado) => {
 

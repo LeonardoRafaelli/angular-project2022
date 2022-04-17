@@ -48,7 +48,7 @@ export class AdicionarProdutoComponent implements OnInit {
   imgURL;
   arrayProdutos = [];
   idTemporario;
-
+  emAlteracao = 0;
 
   pegarImg(event){
     const file = new FileReader();
@@ -71,8 +71,7 @@ export class AdicionarProdutoComponent implements OnInit {
           if(confirm("Deseja mesmo adicionar este produto? (Ele será visível aos usuários)")){
             this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
             this.usuarioService.criarEstoque(this.qntdEstoque);
-            // window.location.reload();
-            this.limparInputs();
+            window.location.reload();
           } else {
             alert("Cadastro do produto cancelado!")
             this.limparInputs();
@@ -95,8 +94,10 @@ export class AdicionarProdutoComponent implements OnInit {
   removerProduto(id){
     this.produtoService.removerProduto(id);
     this.produtoService.removerEstoque(id);
-    // window.location.reload();
-    this.infosProdutoEstoque();
+    window.location.reload();
+    setTimeout(() => {
+      this.infosProdutoEstoque();
+    }, 500);
   }
 
   limparInputs(){
@@ -110,10 +111,15 @@ export class AdicionarProdutoComponent implements OnInit {
     this.produtoService.alterProduct(this.productName, this.productPrice, this.imgURL, this.idTemporario);
     this.produtoService.alterStock(this.qntdEstoque, this.idTemporario);
     this.idTemporario = null;
-    this.infosProdutoEstoque();
+    this.emAlteracao = 0;
+    window.location.reload();
+    setTimeout(() => {
+      this.infosProdutoEstoque();
+    }, 500);
   }
 
   alterarProduto(id){
+    this.emAlteracao = 1;
     this.produtoService.buscarProdutos()
     .then((result: any) => {
       result.list.find(prod => {
@@ -138,6 +144,12 @@ export class AdicionarProdutoComponent implements OnInit {
     this.idTemporario = id;
   }
 
+  cancelAlter(){
+    this.limparInputs();
+    this.limparIMG();
+    this.idTemporario = null;
+    this.emAlteracao = 0;
+  }
 
   limparIMG(){
       this.imgURL = null;

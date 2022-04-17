@@ -13,7 +13,7 @@
       <hr style="height: 40px;">
       <p>SOLUÇÕES</p>
       <hr style="height: 40px;">
-      <p>CARRINHO</p>
+      <p (click)="levaAoCarrinho()">CARRINHO</p>
       <hr *ngIf="admin == 1" style="height: 40px;">
       <p *ngIf="admin == 1" (click)="gerenciarProduto()">GERENCIAR PRODUTOS</p>
     </div>
