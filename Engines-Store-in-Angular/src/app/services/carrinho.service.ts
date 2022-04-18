@@ -10,7 +10,7 @@ export class CarrinhoService {
 
 
   
-  adicionarAoCarrinho(id, qntd){
+  adicionarAoCarrinho(userID ,id, qntd){
     return new Promise((resolve, rejected) => {
        
       fetch('/api/adiciona-ao-carrinho', {
@@ -20,7 +20,7 @@ export class CarrinhoService {
         },
         body: JSON.stringify(
           {
-            id, qntd
+            userID, id, qntd
           }
         )
       })
@@ -38,6 +38,26 @@ export class CarrinhoService {
         headers: {
           'Content-Type': 'application/json'
         },
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
+  removerProdCarrinho(prodID){
+    return new Promise((resolvido, rejeitado) => {
+       
+      fetch('/api/remover-produto-do-carrinho', {
+        method: 'POST',
+        body: JSON.stringify(
+          {
+            prodID
+          }
+        ),
+        headers: {
+          'Content-Type': 'application/json'
+        }
       })
       .then(resultado => resultado.json())
       .then(result => resolvido(result))

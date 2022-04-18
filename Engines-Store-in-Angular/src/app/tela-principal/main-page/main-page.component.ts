@@ -36,21 +36,24 @@ export class MainPageComponent implements OnInit {
       });
   }
 
+
+  idArray = [];
   admin = localStorage.getItem("admin?");
+  user = localStorage.getItem("User");
+
 
   gerenciarProduto(){
     this.router.navigate(["add-product"])
   }
 
+  
 
   async adicionarAoCarrinho(id){ 
     await this.confirmaID(id);
 
-    console.log(this.idArray);
-
     if(this.idArray.length == 0){
       let qntd = prompt("Insira a quantidade que deseja adicionar ao carrinho:")
-      this.carrinhoService.adicionarAoCarrinho(id, qntd);
+      this.carrinhoService.adicionarAoCarrinho(this.user, id, qntd);
 
       alert("Produto adicionado ao carrinho!");
       this.carrinhoService.buscarCarrinho()
@@ -58,13 +61,17 @@ export class MainPageComponent implements OnInit {
         console.log(result.list);
       })
     } else {
-      alert("Produto já adicionado ao carrinho!");
+      this.carrinhoService.buscarCarrinho()
+      .then((result: any) => {
+        console.log(result.list);
+      })
+      alert("Produto já adicionado ao seu carrinho!");
     }
-    
+  
     this.idArray = [];
   } 
 
-  idArray = [];
+  
 
   async confirmaID(id){
     await this.carrinhoService.buscarCarrinho()

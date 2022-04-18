@@ -2,18 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { CarrinhoService } from 'src/app/services/carrinho.service';
 
 @Component({
-  selector: 'app-adicionar-produto',
-  templateUrl: './adicionar-produto.component.html',
-  styleUrls: ['./adicionar-produto.component.css']
+  selector: 'app-gerencia-produto',
+  templateUrl: './gerencia-produto.component.html',
+  styleUrls: ['./gerencia-produto.component.css']
 })
-export class AdicionarProdutoComponent implements OnInit {
+
+export class GerenciaProdutoComponent implements OnInit {
 
   constructor(
     private router: Router,
     private usuarioService: UsuarioService,
-    private produtoService: ProdutoService
+    private produtoService: ProdutoService,
+    private carrinhoService: CarrinhoService
   ) { }
 
   ngOnInit() {
@@ -45,7 +48,7 @@ export class AdicionarProdutoComponent implements OnInit {
   productName;
   productPrice;
   qntdEstoque;
-  imgURL;
+  imgURL = null;
   arrayProdutos = [];
   idTemporario;
   emAlteracao = 0;
@@ -67,20 +70,19 @@ export class AdicionarProdutoComponent implements OnInit {
 
 
   adicionarProduto(){
-        if(this.verificaProduto()){
-          if(confirm("Deseja mesmo adicionar este produto? (Ele será visível aos usuários)")){
-            this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
-            this.usuarioService.criarEstoque(this.qntdEstoque);
-            window.location.reload();
-          } else {
-            alert("Cadastro do produto cancelado!")
-            this.limparInputs();
-          }
-        } else {
-          alert("Há campos não preenchidos!!")
-        }
-
-        this.infosProdutoEstoque();
+    if(this.verificaProduto()){
+      if(confirm("Deseja mesmo adicionar este produto? (Ele será visível aos usuários)")){
+        this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
+        this.usuarioService.criarEstoque(this.qntdEstoque);
+        window.location.reload();
+      } else {
+        alert("Cadastro do produto cancelado!")
+        this.limparInputs();
+      }
+    } else {
+      alert("Há campos não preenchidos!!")
+    }
+    this.infosProdutoEstoque();
   }
 
 
@@ -91,9 +93,11 @@ export class AdicionarProdutoComponent implements OnInit {
     return true;
   }
 
-  removerProduto(id){
+  async removerProduto(id){
     this.produtoService.removerProduto(id);
     this.produtoService.removerEstoque(id);
+   
+
     window.location.reload();
     setTimeout(() => {
       this.infosProdutoEstoque();
@@ -103,7 +107,7 @@ export class AdicionarProdutoComponent implements OnInit {
   limparInputs(){
     this.productName = '';
     this.productPrice = '';
-    this.imgURL = null;
+    this.imgURL = "";
     this.qntdEstoque = '';
   }
 

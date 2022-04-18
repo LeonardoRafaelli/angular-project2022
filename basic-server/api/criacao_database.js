@@ -62,7 +62,8 @@ database(`CREATE TABLE IF NOT EXISTS VENDAS (
 });
 
 database(`CREATE TABLE IF NOT EXISTS CARRINHO (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    id INTEGER PRIMARY KEY AUTOINCREMENT not null,
+    cliente_id int not null,
     produto_id int not null,
     quantidade int not null
 )`).then(result => {
