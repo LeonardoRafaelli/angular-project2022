@@ -20,7 +20,7 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 database(`CREATE TABLE IF NOT EXISTS USER (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(45) NOT NULL,
-    PASSWORD varchar(50),
+    PASSWORD varchar(100),
     CEP_cep char(8),
     FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
     )`).then(result => {
@@ -44,7 +44,7 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
 database(`CREATE TABLE IF NOT EXISTS ADMINISTRADOR (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     nome varchar(45) not null,
-    password varchar(45) not null
+    password varchar(100) not null
 )`).then(result => {
     console.log("Tabela Administrador criada!")
 }).catch(err => {
