@@ -20,8 +20,8 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 database(`CREATE TABLE IF NOT EXISTS USER (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(45) NOT NULL,
-    PASSWORD varchar(50) NOT NULL,
-    CEP_cep char(8) not null,
+    PASSWORD varchar(50),
+    CEP_cep char(8),
     FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
     )`).then(result => {
     console.log('Tabela Usuários criada!')

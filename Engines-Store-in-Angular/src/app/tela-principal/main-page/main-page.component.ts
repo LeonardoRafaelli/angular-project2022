@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProdutoService } from '../../services/produto.service'
 import { CarrinhoService } from 'src/app/services/carrinho.service';
-import { promise } from 'protractor';
 
 @Component({
   selector: 'app-main-page',
@@ -77,7 +76,7 @@ export class MainPageComponent implements OnInit {
     await this.carrinhoService.buscarCarrinho()
     .then((result: any) => {
       for(let i = 0; i < result.list.length; i++){
-        if(result.list[i].produto_id == id){
+        if(result.list[i].produto_id == id && this.user == result.list[i].cliente_id){
           this.idArray.push(id);
         }
       }

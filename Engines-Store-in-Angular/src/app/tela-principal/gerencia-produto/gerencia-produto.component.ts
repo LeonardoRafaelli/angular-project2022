@@ -73,21 +73,24 @@ export class GerenciaProdutoComponent implements OnInit {
     if(this.verificaProduto()){
       if(confirm("Deseja mesmo adicionar este produto? (Ele será visível aos usuários)")){
         this.usuarioService.criarProduto(this.productName, this.productPrice, this.imgURL)
-        this.usuarioService.criarEstoque(this.qntdEstoque);
+        this.usuarioService.criarEstoque(this.qntdEstoque)
+        
         window.location.reload();
       } else {
         alert("Cadastro do produto cancelado!")
         this.limparInputs();
       }
     } else {
-      alert("Há campos não preenchidos!!")
+      alert("Há campos não preenchidos! Ou a imagem é grande demais!")
     }
     this.infosProdutoEstoque();
   }
 
 
   verificaProduto(){
-    if(this.productName == '' || this.productPrice == '' || this.imgURL == null || this.qntdEstoque == ''){
+    let imgContaLetras = this.imgURL.split('');
+    console.log(imgContaLetras.length);
+    if(this.productName == '' || this.productPrice == '' || this.imgURL == null || this.qntdEstoque == '' || imgContaLetras.length > 20000){
       return false;
     }
     return true;

@@ -17,7 +17,7 @@ inserirRota('/buscar-carrinho', (dados, resposta) => {
 });
 
 inserirRota('/remover-produto-do-carrinho', (dados, resposta) => {
-    database(`DELETE * FROM CARRINHO WHERE produto_id = ${dados.prodID}`)
+    database(`DELETE FROM CARRINHO WHERE id = ${dados.carID}`)
     .then(result => {
         resposta({ list: result });
     }).catch(erro => {

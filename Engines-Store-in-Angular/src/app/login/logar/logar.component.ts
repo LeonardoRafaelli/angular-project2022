@@ -7,6 +7,7 @@ import {
     AuthService,
     GoogleLoginProvider,
 } from 'angular-6-social-login-v2';
+import { shiftInitState } from '@angular/core/src/view';
 
 @Component({
   selector: 'app-logar',
@@ -28,6 +29,10 @@ export class LogarComponent implements OnInit {
 
   ngOnInit() {
     localStorage.clear();
+    this.usuarioService.buscarUsuarios()
+    .then((lista: any) => {
+      console.log(lista);
+    });
   }
 
   logar(){
@@ -56,11 +61,26 @@ export class LogarComponent implements OnInit {
     this.router.navigate(['/login-admin'])
   }
 
-  public socialSignIn(socialPlatform : string) {
-    this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
+  public async socialSignIn(socialPlatform : string) {
+    await this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID).then(
       (userData) => {
+        this.usuarioService.buscarUsuarios()
+        .then((lista: User[]) =>{
+          let confirma = 0;
+          localStorage.setItem("google?", "1");
+          for(let i = 0; i < lista.length; i++){
+            if(lista[i].NOME == userData.name){
+              confirma = 1;
+            }
+          }
+          if(confirma == 0){
+            this.usuarioService.criarUsuario(userData.name, null, null);
+          }
+        });
         console.log(socialPlatform+" sign in data : " , userData);
-        this.router.navigate(['/home'])
+        setTimeout(() => {
+          this.router.navigate(['/home'])
+        }, 1000);
       }
     );
   }

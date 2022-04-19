@@ -1,0 +1,68 @@
+<div class="header-container">
+  <div class="header-child-1">
+    <img src="../../../../pictures/Leozera-removebg-preview.png" alt="">
+  </div>
+  <div class="header-child-2">
+    <p>SOBRE A LEOZERA ENGINES</p>
+    <hr style="height: 40px;">
+    <p>INVESTIDORES</p>
+    <hr style="height: 40px;">
+    <p>ÉTICA</p>
+    <hr style="height: 40px;">
+    <p>SUPORTE</p>
+    <hr style="height: 40px;">
+    <p>SOLUÇÕES</p>
+    <hr *ngIf="admin == 1" style="height: 40px;">
+    <p *ngIf="admin == 1" (click)="gerenciarProduto()">GERENCIAR PRODUTOS</p>
+  </div>
+</div>
+<main>
+  <div>
+    <button class="voltar" (click)="voltar()">Voltar</button>
+  </div>
+  <div class="carrinho-container">
+    <div class="carrinho-child1">
+      <div class="titulo-produtos">
+        <h2>SEU CARRINHO</h2>
+      </div>
+      <div class="main-container">
+        <div *ngFor="let prodCar of newArrayProd, let i = index">
+          <div style="margin:0 10px 50px 10px;">
+            <img [src]="prodCar.img" alt="Imagem do motor" class="img-produto">
+            <div style="display: flex; flex-direction: column; align-items: center;">
+              <div style="text-align: center; margin-bottom: 5px ;">
+                <p class="nome-produto"><b>Nome:</b> {{prodCar.nome}}</p>
+                <p class="valor-produto"><b>Valor unitário:</b> R$ {{prodCar.valorUni}}</p>
+                <p class="valor-produto"><b>Quantidade:</b> {{prodCar.quantidade}}</p>
+                <p class="valor-produto"><b>Valor:</b> R$ {{prodCar.valor}}</p>
+              </div>
+              <div style="text-align: center;">
+                <button class="add-carrinho" (click)="retiraDoCarrinho(prodCar.idToRemove)">Remover do carrinho</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carrinho-child2">
+      <div class="login-container">
+        <div class="div-login">
+          <h1>NOTA FISCAL</h1>
+          <div class="input-keys">
+            <p>Valor totalv R$</p>
+          </div>
+          <input class="input-login" type="text" disabled value={{valorCarrinho}} >
+          <br />
+          <div class="input-keys">
+            <p>Quantidade de produtos presentes na lista</p>
+          </div>
+          <input class="input-login" type="text" disabled value={{qntdProdutosNaLista}}>
+          <br />
+          <div class="login-buttons">
+            <button class="button-login">Confirmar a compra</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

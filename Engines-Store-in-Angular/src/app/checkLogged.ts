@@ -23,8 +23,8 @@ export class CheckLogged implements CanActivate {
     ): Observable<boolean> | Promise<boolean> | boolean {
         let USER = localStorage.getItem("User")
         let USERADM = localStorage.getItem("UserADM")
-
-        if (USER || USERADM) {
+        let Google = localStorage.getItem("google?");
+        if (USER || USERADM || Google) {
             return true;
         } else {
             this.router.navigate(['/'])

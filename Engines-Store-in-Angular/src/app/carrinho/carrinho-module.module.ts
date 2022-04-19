@@ -8,4 +8,4 @@ import { TelaCarrinhoComponent } from './tela-carrinho/tela-carrinho.component';
   ],
   declarations: [TelaCarrinhoComponent]
 })
-export class CarrinhoModuleModule { }
+export class CarrinhoModule { }

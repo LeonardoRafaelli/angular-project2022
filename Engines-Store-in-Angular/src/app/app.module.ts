@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginModule } from './login/login.module';
 import { MainPageComponent } from './tela-principal/main-page/main-page.component';
 import { TelaPrincipalModule } from './tela-principal/tela-principal.module';
-import { CarrinhoModuleModule } from './carrinho-module/carrinho-module.module';
+import { CarrinhoModule } from './carrinho/carrinho-module.module';
 import { CadastroComponent } from './login/cadastro/cadastro.component';
 import { LogarComponent } from './login/logar/logar.component';
 import { LogarAdmComponent } from './login/logar-adm/logar-adm.component';
@@ -51,7 +51,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     LoginModule,
     TelaPrincipalModule,
-    CarrinhoModuleModule,
+    CarrinhoModule,
     SocialLoginModule
   ],
   providers: [
