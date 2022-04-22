@@ -30,7 +30,7 @@
           <div style="margin:0 10px 50px 10px;">
             <img [src]="prodCar.img" alt="Imagem do motor" class="img-produto">
             <div style="display: flex; flex-direction: column; align-items: center;">
-              <div style="text-align: center; margin-bottom: 5px ;">
+              <div class="informacoes-produto">
                 <p class="nome-produto"><b>Nome:</b> {{prodCar.nome}}</p>
                 <p class="valor-produto"><b>Valor unitário:</b> R$ {{prodCar.valorUni}}</p>
                 <p class="valor-produto"><b>Quantidade:</b> {{prodCar.quantidade}}</p>
@@ -59,7 +59,7 @@
           <input class="input-login" type="text" disabled value={{qntdProdutosNaLista}}>
           <br />
           <div class="login-buttons">
-            <button class="button-login">Confirmar a compra</button>
+            <button class="button-login" (click)="realizarVenda()">Confirmar a compra</button>
           </div>
         </div>
       </div>

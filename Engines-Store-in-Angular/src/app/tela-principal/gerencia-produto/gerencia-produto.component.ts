@@ -97,8 +97,17 @@ export class GerenciaProdutoComponent implements OnInit {
   }
 
   async removerProduto(id){
+
     this.produtoService.removerProduto(id);
     this.produtoService.removerEstoque(id);
+    await this.carrinhoService.buscarCarrinho()
+    .then((kart: any) => {
+      kart.list.find(prodKart => {
+        if(prodKart.produto_id == id){
+          this.carrinhoService.removerDoCarrinho(prodKart.id);
+        }
+      })
+    })
    
 
     window.location.reload();

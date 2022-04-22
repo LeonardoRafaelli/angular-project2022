@@ -21,7 +21,7 @@ inserirRota('/alterar_produto', (dados, resposta) => {
         resposta({ list: result });
 
     }).catch(erro => {
-
+        
         console.log(erro);
     });
 
@@ -37,16 +37,11 @@ inserirRota('/remover_estoque', (dados, resposta) => {
 
 
 inserirRota('/alterar_estoque', (dados, resposta) => {
-
-    database(`UPDATE ESTOQUE SET quantidade = ${dados.qntdEstoque} WHERE id = ${dados.id}`).then(result => {
-
+    database(`UPDATE ESTOQUE SET quantidade = ${dados.novoEstoque} WHERE id = ${dados.idEstoque}`).then(result => {
         resposta({ list: result });
-
     }).catch(erro => {
-
         console.log(erro);
     });
-
 });
 
 

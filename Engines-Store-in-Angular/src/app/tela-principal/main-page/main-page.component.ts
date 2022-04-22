@@ -18,20 +18,28 @@ export class MainPageComponent implements OnInit {
 
     newArrayProd = [];
 
+
   ngOnInit() {
       this.produtoService.buscarProdutos()
       .then((result: any) => {
         result.list.find(prod => {
-          let prodTemp = {
-            id: prod.ID,
-            nome: prod.NOME,
-            valor: prod.VALOR,
-            img: prod.IMG
-          }
-
-          this.newArrayProd.push(prodTemp);
+          this.produtoService.buscarEstoque()
+          .then((result: any) => {
+            result.list.find(estoque => {
+              if(estoque.id == prod.ID && estoque.quantidade > 0){
+                let prodTemp = {
+                  id: prod.ID,
+                  nome: prod.NOME,
+                  valor: prod.VALOR,
+                  img: prod.IMG,
+                  estoque: estoque.quantidade
+                }
+                this.newArrayProd.push(prodTemp);
+              }
+            })
+          })
+         
         })
-
       });
   }
 
@@ -47,18 +55,26 @@ export class MainPageComponent implements OnInit {
 
   
 
-  async adicionarAoCarrinho(id){ 
+  async adicionarAoCarrinho(id, estoque){ 
     await this.confirmaID(id);
 
     if(this.idArray.length == 0){
-      let qntd = prompt("Insira a quantidade que deseja adicionar ao carrinho:")
-      this.carrinhoService.adicionarAoCarrinho(this.user, id, qntd);
-
-      alert("Produto adicionado ao carrinho!");
-      this.carrinhoService.buscarCarrinho()
-      .then((result: any) => {
-        console.log(result.list);
-      })
+      let qntd = prompt("Insira a quantidade que deseja adicionar ao carrinho:");
+      if(qntd != null){
+        if(qntd <= estoque){
+          this.carrinhoService.adicionarAoCarrinho(this.user, id, qntd);
+    
+          alert("Produto adicionado ao carrinho!");
+          this.carrinhoService.buscarCarrinho()
+          .then((result: any) => {
+            console.log(result.list);
+          })
+        }else {
+          alert("Pedido ultrapassa a quantidade disponível: " + estoque);
+        }
+      } else {
+        alert("Por favor, insira a quantidade à colocar na lista!")
+      }
     } else {
       this.carrinhoService.buscarCarrinho()
       .then((result: any) => {

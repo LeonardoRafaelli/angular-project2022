@@ -43,14 +43,14 @@ export class ProdutoService {
     });
   }
 
-  alterStock(qntdEstoque, id){
+  alterStock(novoEstoque, idEstoque){
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/alterar_estoque', {
         method: 'POST',
         body: JSON.stringify(
           {
-            qntdEstoque, id
+            novoEstoque, idEstoque
           }
         ),
         headers: {

@@ -202,3 +202,19 @@
     background-color: #eeeef0;
     color: rgb(24, 69, 129)
   }
+
+
+  .informacoes-produto{
+    text-align: start;
+    margin: 5px 0 5px 0 ;
+    border: 1px solid black;
+    border-radius: 3px;
+  }
+  
+  .informacoes-produto p{
+    margin: 3px;
+    padding: 3px;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  }
+
+  

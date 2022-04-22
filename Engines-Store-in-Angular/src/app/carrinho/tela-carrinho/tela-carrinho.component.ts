@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-tela-carrinho',
   templateUrl: './tela-carrinho.component.html',
@@ -20,30 +21,31 @@ export class TelaCarrinhoComponent implements OnInit {
     .then((result: any) => {
       for(let i = 0; i < result.list.length; i++){
         if(result.list[i].cliente_id == this.user){
-          this.listaCarrinhoUsuario.push({id: result.list[i].id, idProduto: result.list[i].produto_id, quantidade: result.list[i].quantidade});
+          this.listaCarrinhoUsuario.push({id: result.list[i].id, idProduto: result.list[i].produto_id, idCliente: result.list[i].cliente_id, quantidade: result.list[i].quantidade});
         }
       }
     });
-    console.log("Lista carrinho: " , this.listaCarrinhoUsuario);
     await this.produtoService.buscarProdutos()
-    .then((result: any) => {
-      for(let i = 0; i < result.list.length; i++){
+    .then((prods: any) => {
+      for(let i = 0; i < prods.list.length; i++){
         for(let y = 0; y < this.listaCarrinhoUsuario.length; y++){
-          if(result.list[i].ID == this.listaCarrinhoUsuario[y].idProduto){
-              this.newArrayProd.push({
-                  id: result.list[i].ID,
-                  nome: result.list[i].NOME,
-                  valorUni: result.list[i].VALOR,
-                  img: result.list[i].IMG,
-                  valor: (result.list[i].VALOR * this.listaCarrinhoUsuario[y].quantidade),
-                  quantidade: this.listaCarrinhoUsuario[y].quantidade,
-                  idToRemove: this.listaCarrinhoUsuario[y].id
-              })
+          if(prods.list[i].ID == this.listaCarrinhoUsuario[y].idProduto){
+            this.newArrayProd.push({
+              id: prods.list[i].ID,
+              nome: prods.list[i].NOME,
+              valorUni: prods.list[i].VALOR,
+              img: prods.list[i].IMG,
+              valor: (prods.list[i].VALOR * this.listaCarrinhoUsuario[y].quantidade),
+              quantidade: this.listaCarrinhoUsuario[y].quantidade,
+              idToRemove: this.listaCarrinhoUsuario[y].id
+            }) 
           }
         }
       }
     })
-    this.notaFiscal();
+    setTimeout(() => {
+      this.notaFiscal();
+    }, 200);
   }
 
   user = localStorage.getItem("User");
@@ -62,9 +64,33 @@ export class TelaCarrinhoComponent implements OnInit {
   }
 
   retiraDoCarrinho(id){
-    console.log(id);
     this.carrinhoService.removerDoCarrinho(id)
     window.location.reload();
+  }
+
+  async realizarVenda(){
+    let lista = this.newArrayProd;2
+    await this.produtoService.buscarEstoque()
+    .then((result: any) => {
+      result.list.find(stock => {
+        for(let i = 0; i < lista.length; i++){
+          if(stock.id == lista[i].id){
+            console.log(lista[i])
+            if(lista[i].quantidade <= stock.quantidade){
+              let alteraEstoque = stock.quantidade - lista[i].quantidade;
+              this.produtoService.alterStock(alteraEstoque, stock.id);
+              this.retiraDoCarrinho(lista[i].idToRemove);
+              console.log(stock);
+              alert("Venda realizada com sucesso!!")
+            } else {
+              if(confirm(`O produto: '${lista[i].nome}'.\nNão possui mais ${lista[i].quantidade} unidades em seu estoque.\nEstoque atual: ${stock.quantidade}\nDeseja remover ele do seu carrinho?`)){
+                this.retiraDoCarrinho(lista[i].idToRemove);
+              }
+            }
+          }
+        }
+      })
+    })
   }
 
   voltar(){
