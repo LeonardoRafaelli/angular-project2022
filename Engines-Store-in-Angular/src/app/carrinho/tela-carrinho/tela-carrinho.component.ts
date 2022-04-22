@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ProdutoService } from 'src/app/services/produto.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,6 +14,7 @@ export class TelaCarrinhoComponent implements OnInit {
   constructor(
     private carrinhoService: CarrinhoService,
     private produtoService: ProdutoService,
+    private usuarioService: UsuarioService,
     private route: Router
   ) { }
 
@@ -43,11 +45,35 @@ export class TelaCarrinhoComponent implements OnInit {
         }
       }
     })
+    let numeroCasa
+    await this.usuarioService.buscarCEP()
+    .then((tabelaCep: any) => {
+      tabelaCep.list.find((cep) => {
+        this.usuarioService.buscarUsuarios()
+        .then((usuarios: any) => {
+          usuarios.find(usuario => {
+            if(usuario.ID == this.user && usuario.CEP_cep == cep.cep){
+              this.userCEP = cep.cep;
+              numeroCasa = cep.numero;
+            }
+          })
+        });
+      })
+    });
+    
     setTimeout(() => {
       this.notaFiscal();
-    }, 200);
+      this.fetchCEP(this.userCEP, numeroCasa);
+    }, 400);
+
+
   }
 
+  userCEP;
+  cidade;
+  bairro;
+  rua;
+  numero;
   user = localStorage.getItem("User");
   admin = localStorage.getItem("admin?")
   valorCarrinho=0;
@@ -61,6 +87,19 @@ export class TelaCarrinhoComponent implements OnInit {
       this.valorCarrinho += lista[i].valor;
       this.qntdProdutosNaLista += 1;
     }
+  }
+
+  async fetchCEP(cep, numeroCasa){
+    this.numero = numeroCasa; 
+    await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+    .then(result => result.json())
+    .then(resultado => {
+      console.log(resultado);
+        this.cidade = resultado.localidade;
+        this.bairro = resultado.bairro;
+        this.rua = resultado.logradouro;
+    })
+    .catch(err => console.log(err));
   }
 
   retiraDoCarrinho(id){

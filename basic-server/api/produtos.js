@@ -14,6 +14,20 @@ inserirRota('/buscar_estoque', (dados, resposta) => {
     });
 });
 
+
+inserirRota('/criar_produto', (dados, resposta) => {
+    database(`INSERT INTO PRODUTO (NOME, VALOR, IMG, CARRINHO)
+     VALUES ("${dados.nome}", ${dados.valor}, "${dados.imgBase64}", "0")`)
+
+    .then(result => {
+        console.log('Produto inserido com sucesso!');
+        resposta({ message: 'Produto inserido com sucesso!' })
+    }).catch(erro => {
+        console.log('Erro ao inserir o produto!')
+        resposta({ erro: 'Erro ao inserir o produto!' });
+    });
+})
+
 inserirRota('/alterar_produto', (dados, resposta) => {
 
     database(`UPDATE PRODUTO SET NOME = "${dados.nome}", VALOR = ${dados.valor}, IMG = "${dados.img}" WHERE ID = ${dados.id}`).then(result => {
@@ -26,6 +40,15 @@ inserirRota('/alterar_produto', (dados, resposta) => {
     });
 
 });
+
+inserirRota('/adicionar_estoque', (dados, resposta) => {
+    database(`INSERT INTO ESTOQUE 
+    VALUES (NULL, ${dados.qntd})`)
+    .then(result => {
+        resposta({message: 'Estoque do produto registrado!'});
+    }).catch(err => 
+        resposta({erro: 'Erro ao inserir o estoque'}))
+})
 
 inserirRota('/remover_estoque', (dados, resposta) => {
     database(`DELETE FROM ESTOQUE WHERE ID = ${dados.id}`).then(result => {

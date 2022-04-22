@@ -1,3 +1,4 @@
+
 <div class="header-container">
   <div class="header-child-1">
     <img src="../../../../pictures/Leozera-removebg-preview.png" alt="">
@@ -49,15 +50,30 @@
         <div class="div-login">
           <h1>NOTA FISCAL</h1>
           <div class="input-keys">
-            <p>Valor totalv R$</p>
+            <p>Valor total R$</p>
           </div>
           <input class="input-login" type="text" disabled value={{valorCarrinho}} >
-          <br />
           <div class="input-keys">
             <p>Quantidade de produtos presentes na lista</p>
           </div>
           <input class="input-login" type="text" disabled value={{qntdProdutosNaLista}}>
-          <br />
+          <h3>Endereço de entrega</h3>
+          <div class="input-keys">
+            <p>Cidade</p>
+          </div>
+          <input class="input-login" placeholder="Bairro" type="text" value={{cidade}}>
+          <div class="input-keys">
+            <p>Bairro</p>
+          </div>
+          <input class="input-login" placeholder="Bairro" type="text" value={{bairro}}>
+          <div class="input-keys">
+            <p>Rua</p>
+          </div>
+          <input class="input-login" placeholder="Rua" type="text" value={{rua}}>
+          <div class="input-keys">
+            <p>Número da casa</p>
+          </div>
+          <input class="input-login" placeholder="Número da casa" type="text" value={{numero}}>
           <div class="login-buttons">
             <button class="button-login" (click)="realizarVenda()">Confirmar a compra</button>
           </div>

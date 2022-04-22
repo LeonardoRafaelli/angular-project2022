@@ -24,6 +24,21 @@ export class UsuarioService {
   }
 
 
+  buscarCEP(){
+    return new Promise((resolvido, rejeitado) => {
+
+      fetch('/api/buscar_cep', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(resultado => resultado.json())
+      .then(result => resolvido(result))
+      .catch(rejeitado);
+    });
+  }
+
   removerEstoque(removerId){
     return new Promise((resolvido, rejeitado) => {
 

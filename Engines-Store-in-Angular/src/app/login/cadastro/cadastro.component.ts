@@ -28,10 +28,14 @@ export class CadastroComponent implements OnInit {
 
   registerNow(){
     if(this.cep, this.houseNumber, this.username,  this.password){
-      this.usuarioService.adicionarCep(this.cep, this.houseNumber);
-      this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
-      alert("Usuário cadastrado com sucesso!")
-      this.router.navigate(['/']);
+      if(this.cep.length < 8){
+        alert("Por favor, insira um CEP válido!");
+      } else {
+        this.usuarioService.adicionarCep(this.cep, this.houseNumber);
+        this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
+        alert("Usuário cadastrado com sucesso!")
+        this.router.navigate(['/']);
+      }
     } else {
       alert("Há campos não preenchidos!")
     }
