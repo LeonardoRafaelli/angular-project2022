@@ -102,10 +102,11 @@ button:hover{
     margin: 5px 0 5px 0 ;
     border: 1px solid black;
     border-radius: 3px;
-}
-
-.informacoes-produto p{
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .informacoes-produto p{
     margin: 3px;
     padding: 3px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
+  }
