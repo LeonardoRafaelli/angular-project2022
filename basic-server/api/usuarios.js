@@ -7,22 +7,13 @@ inserirRota('/buscar_usuario', (dados, resposta) => {
     });
 });
 
-inserirRota('/buscar_cep', (dados, resposta) => {
-    console.log(dados);
-    database('SELECT * FROM CEP').then(result => {
-        resposta({ list: result });
-    }).catch(erro => {
-        resposta({ resposta: erro });
-    });
-});
-
 
 inserirRota('/criar_usuario', function(dados, resposta) {
     console.log(dados);
 
     database(`INSERT INTO USER
-    (nome, password, CEP_cep)
-     VALUES ("${dados.nome}", "${dados.password}", "${dados.cep}")`).
+    (nome, password)
+     VALUES ("${dados.nome}", "${dados.password}")`).
 
     then(result => {
         console.log('Usuário inserido com sucesso!');

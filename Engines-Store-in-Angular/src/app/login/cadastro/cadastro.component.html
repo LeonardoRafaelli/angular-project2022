@@ -16,24 +16,20 @@
     <div class="div-login">
         <h1>Register</h1>
         <div class="input-keys">
-            <p>Username</p>
+            <p>Usuário</p>
         </div>
+
         <input class="input-login" type="text" placeholder="Username" [(ngModel)]='username'>
         <br />
         <div class="input-keys">
-            <p>Password</p>
+            <p>Senha</p>
         </div>
         <input class="input-login" type="password" placeholder="Senha" [(ngModel)]='password'>
         <br />
         <div class="input-keys">
-            <p>CEP</p>
+            <p>Confirme sua senha</p>
         </div>
-        <input class="input-login" type="text" placeholder="CEP" [(ngModel)]='cep'>
-        <br />
-        <div class="input-keys">
-            <p>Número da Casa</p>
-        </div>
-        <input class="input-login" type="number" placeholder="Número da Casa" [(ngModel)]='houseNumber'>
+        <input class="input-login" type="password" placeholder="Confirme sua senha" [(ngModel)]='confirmPassword'>
         <br />
         <div class="login-buttons">
             <button class="button-login" (click)="logar()">Login</button>

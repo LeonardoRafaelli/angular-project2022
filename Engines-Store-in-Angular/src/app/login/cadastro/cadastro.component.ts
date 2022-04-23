@@ -16,8 +16,7 @@ export class CadastroComponent implements OnInit {
 
   username = "";
   password = "";
-  cep = "";
-  houseNumber = "";
+  confirmPassword = "";
 
   ngOnInit() {
   }
@@ -27,15 +26,15 @@ export class CadastroComponent implements OnInit {
   }
 
   registerNow(){
-    if(this.cep, this.houseNumber, this.username,  this.password){
-      if(this.cep.length < 8){
-        alert("Por favor, insira um CEP válido!");
+    if(this.username,  this.password){
+      if(this.password != this.confirmPassword){
+        alert("As senhas não coincidem!")
       } else {
-        this.usuarioService.adicionarCep(this.cep, this.houseNumber);
-        this.usuarioService.criarUsuario(this.username,  this.password, this.cep);
+        this.usuarioService.criarUsuario(this.username,  this.password);
         alert("Usuário cadastrado com sucesso!")
         this.router.navigate(['/']);
       }
+      
     } else {
       alert("Há campos não preenchidos!")
     }

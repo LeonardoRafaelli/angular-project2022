@@ -1,11 +1,11 @@
-database(`CREATE TABLE IF NOT EXISTS CEP(
-    cep CHAR(8) NOT NULL PRIMARY KEY,
-    numero VARCHAR(7)
-    );`).then(result => {
-        console.log('Tabela CEP criada!')
-    }).catch(err => {
-        console.log("Erro!", err);
-    });
+// database(`CREATE TABLE IF NOT EXISTS CEP(
+//     cep CHAR(8) NOT NULL PRIMARY KEY,
+//     numero VARCHAR(7)
+//     );`).then(result => {
+//         console.log('Tabela CEP criada!')
+//     }).catch(err => {
+//         console.log("Erro!", err);
+//     });
 
 database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
     id INTEGER PRIMARY KEY,
@@ -20,9 +20,7 @@ database(`CREATE TABLE IF NOT EXISTS ESTOQUE (
 database(`CREATE TABLE IF NOT EXISTS USER (
     ID INTEGER PRIMARY KEY AUTOINCREMENT,
     NOME varchar(45) NOT NULL,
-    PASSWORD varchar(100),
-    CEP_cep char(8),
-    FOREIGN KEY(CEP_cep) REFERENCES CEP (cep) on update cascade on delete cascade
+    PASSWORD varchar(100)
     )`).then(result => {
     console.log('Tabela Usuários criada!')
 }).catch(erro => {

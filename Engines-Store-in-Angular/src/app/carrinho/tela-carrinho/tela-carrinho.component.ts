@@ -45,30 +45,16 @@ export class TelaCarrinhoComponent implements OnInit {
         }
       }
     })
-    let numeroCasa
-    await this.usuarioService.buscarCEP()
-    .then((tabelaCep: any) => {
-      tabelaCep.list.find((cep) => {
-        this.usuarioService.buscarUsuarios()
-        .then((usuarios: any) => {
-          usuarios.find(usuario => {
-            if(usuario.ID == this.user && usuario.CEP_cep == cep.cep){
-              this.userCEP = cep.cep;
-              numeroCasa = cep.numero;
-            }
-          })
-        });
-      })
-    });
+
     
     setTimeout(() => {
       this.notaFiscal();
-      this.fetchCEP(this.userCEP, numeroCasa);
-    }, 400);
+    }, 300);
 
 
   }
 
+  verificador =0;
   userCEP;
   cidade;
   bairro;
@@ -89,12 +75,11 @@ export class TelaCarrinhoComponent implements OnInit {
     }
   }
 
-  async fetchCEP(cep, numeroCasa){
-    this.numero = numeroCasa; 
+  async fetchCEP(cep){
+    this.verificador = 1;
     await fetch(`https://viacep.com.br/ws/${cep}/json/`)
     .then(result => result.json())
     .then(resultado => {
-      console.log(resultado);
         this.cidade = resultado.localidade;
         this.bairro = resultado.bairro;
         this.rua = resultado.logradouro;

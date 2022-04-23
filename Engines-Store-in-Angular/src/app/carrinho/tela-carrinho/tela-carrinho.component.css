@@ -220,4 +220,10 @@
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   }
 
-  
+  #entrega{
+    margin-top: 15px;
+  }
+
+  #cep{
+    margin-top: 15px;
+  }

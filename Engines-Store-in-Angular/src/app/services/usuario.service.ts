@@ -24,20 +24,20 @@ export class UsuarioService {
   }
 
 
-  buscarCEP(){
-    return new Promise((resolvido, rejeitado) => {
+  // buscarCEP(){
+  //   return new Promise((resolvido, rejeitado) => {
 
-      fetch('/api/buscar_cep', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(resultado => resultado.json())
-      .then(result => resolvido(result))
-      .catch(rejeitado);
-    });
-  }
+  //     fetch('/api/buscar_cep', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json'
+  //       }
+  //     })
+  //     .then(resultado => resultado.json())
+  //     .then(result => resolvido(result))
+  //     .catch(rejeitado);
+  //   });
+  // }
 
   removerEstoque(removerId){
     return new Promise((resolvido, rejeitado) => {
@@ -117,7 +117,7 @@ export class UsuarioService {
   }
 
 
-  criarUsuario(nome, password, cep) {
+  criarUsuario(nome, password) {
     return new Promise((resolvido, rejeitado) => {
 
       fetch('/api/criar_usuario',
@@ -125,7 +125,7 @@ export class UsuarioService {
         method: 'POST',
         body: JSON.stringify(
             {
-              nome, password, cep
+              nome, password
             }
         ), 
         headers: {
@@ -207,33 +207,33 @@ export class UsuarioService {
         rejeitado({erro: erro})
       })
   })
-  };
 
-  adicionarCep(cep, houseNumber) {
-    return new Promise((resolvido, rejeitado) => {
+  
+  // adicionarCep(cep, houseNumber) {
+  //   return new Promise((resolvido, rejeitado) => {
 
-      fetch('/api/adicionar_cep',
-    {  
-        method: 'POST',
-        body: JSON.stringify(
-            {
-              cep, houseNumber
-            }
-        ), 
-        headers: {
-            'Content-Type': 'application/json'
-        }
-      }
-      ).then(function (result) {
-        console.log(result.json())
-        return result;
+  //     fetch('/api/adicionar_cep',
+  //   {  
+  //       method: 'POST',
+  //       body: JSON.stringify(
+  //           {
+  //             cep, houseNumber
+  //           }
+  //       ), 
+  //       headers: {
+  //           'Content-Type': 'application/json'
+  //       }
+  //     }
+  //     ).then(function (result) {
+  //       console.log(result.json())
+  //       return result;
 
-      }).then(function (dados){
-        console.log(dados);
+  //     }).then(function (dados){
+  //       console.log(dados);
 
-      }).catch((erro) => {
-        console.log(erro);
-      })
-  })
-  }
+  //     }).catch((erro) => {
+  //       console.log(erro);
+  //     })
+  // })
+  // }
 }
