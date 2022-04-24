@@ -3,6 +3,7 @@ import { CarrinhoService } from 'src/app/services/carrinho.service';
 import { ProdutoService } from 'src/app/services/produto.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-tela-carrinho',
@@ -76,15 +77,20 @@ export class TelaCarrinhoComponent implements OnInit {
   }
 
   async fetchCEP(cep){
-    this.verificador = 1;
-    await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-    .then(result => result.json())
-    .then(resultado => {
-        this.cidade = resultado.localidade;
-        this.bairro = resultado.bairro;
-        this.rua = resultado.logradouro;
-    })
-    .catch(err => console.log(err));
+      if(cep.length < 8){
+        alert("Insira um CEP válido!")
+      } else {
+  
+        this.verificador = 1;
+        await fetch(`https://viacep.com.br/ws/${cep}/json/`)
+        .then(result => result.json())
+        .then(resultado => {
+          this.cidade = resultado.localidade;
+          this.bairro = resultado.bairro;
+          this.rua = resultado.logradouro;
+        })
+        .catch(err => console.log(err));
+      }
   }
 
   retiraDoCarrinho(id){
@@ -93,7 +99,7 @@ export class TelaCarrinhoComponent implements OnInit {
   }
 
   async realizarVenda(){
-    let lista = this.newArrayProd;2
+    let lista = this.newArrayProd;
     await this.produtoService.buscarEstoque()
     .then((result: any) => {
       result.list.find(stock => {
@@ -115,6 +121,7 @@ export class TelaCarrinhoComponent implements OnInit {
         }
       })
     })
+    location.reload();
   }
 
   voltar(){

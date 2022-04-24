@@ -31,8 +31,7 @@ database(`CREATE TABLE IF NOT EXISTS PRODUTO (
     ID INTEGER PRIMARY KEY,
     NOME varchar(100) NOT NULL,
     VALOR double NOT NULL,
-    IMG varchar(999999),
-    CARRINHO enum(1,0)
+    IMG varchar(999999)
 )`).then(result => {
     console.log('Tabela Produto criada!')
 }).catch(erro => {

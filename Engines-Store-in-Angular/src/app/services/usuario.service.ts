@@ -235,5 +235,5 @@ export class UsuarioService {
   //       console.log(erro);
   //     })
   // })
-  // }
+  }
 }

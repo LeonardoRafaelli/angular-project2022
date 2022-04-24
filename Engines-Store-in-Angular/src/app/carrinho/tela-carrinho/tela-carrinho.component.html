@@ -58,19 +58,15 @@
           </div>
           <input class="input-login" type="text" disabled value={{qntdProdutosNaLista}}>
           <h3 id="entrega">Endereço de entrega</h3>
-          <div *ngIf="verificador == 0">
+
             <div class="input-keys">
               <p id="cep">CEP</p>
             </div>
             <input class="input-login" placeholder="Insira seu cep aqui" type="text" [(ngModel)]="userCEP">
-            <div class="input-keys">
-              <p id="cep">Número da casa</p>
-            </div>
-            <input class="input-login" placeholder="Número da casa" type="text" [(ngModel)]="numero">
             <div class="login-buttons">
               <button class="button-login" (click)="fetchCEP(userCEP)">Buscar endereco de entrega</button>
             </div>
-          </div>
+
 
           <div *ngIf="verificador == 1">
             <div style="margin-top: 15px;"  class="input-keys">
@@ -88,7 +84,7 @@
             <div class="input-keys">
               <p>Número da casa</p>
             </div>
-            <input class="input-login" placeholder="Número da casa" type="text" value={{numero}}>
+            <input class="input-login" placeholder="Número da casa" type="text" [(ngModel)]="numero">
             <div class="login-buttons">
               <button class="button-login" (click)="realizarVenda()">Confirmar a compra</button>
             </div>
